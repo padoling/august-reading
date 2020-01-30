@@ -5,6 +5,7 @@ import com.padoling.portfolio.august.domain.book.BookRepository;
 import com.padoling.portfolio.august.domain.user.User;
 import com.padoling.portfolio.august.domain.user.UserRepository;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +30,8 @@ public class PostsRepositoryTest {
     @Autowired
     private BookRepository bookRepository;
 
-    @After
-    public void cleanup() {
-        postsRepository.deleteAll();
-        userRepository.deleteAll();
-        bookRepository.deleteAll();
-    }
-
-    @Test
-    public void testLoadingPosts() {
-        //given
+    @Before
+    public void setRepositories() {
         userRepository.save(User.builder()
                 .name("test name")
                 .email("test email")
@@ -50,7 +43,18 @@ public class PostsRepositoryTest {
                 .title("test title")
                 .link("test link")
                 .build());
+    }
 
+    @After
+    public void cleanup() {
+        postsRepository.deleteAll();
+        userRepository.deleteAll();
+        bookRepository.deleteAll();
+    }
+
+    @Test
+    public void testLoadingPosts() {
+        //given
         List<User> userList = userRepository.findAll();
         User user = userList.get(0);
 
