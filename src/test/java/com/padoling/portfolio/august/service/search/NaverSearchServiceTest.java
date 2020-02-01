@@ -1,4 +1,4 @@
-package com.padoling.portfolio.august.service;
+package com.padoling.portfolio.august.service.search;
 
 import com.padoling.portfolio.august.search.dto.NaverSearchRequestDto;
 import com.padoling.portfolio.august.search.dto.NaverSearchResponseDto;
