@@ -34,10 +34,10 @@ public class Posts extends BaseTimeEntity {
     private Book book;
 
     @ColumnDefault("0")
-    private Integer viewCount;
+    private Long viewCount;
 
     @Builder
-    public Posts(String title, String content, User user, Book book, Integer viewCount) {
+    public Posts(String title, String content, User user, Book book, Long viewCount) {
         this.title = title;
         this.content = content;
         this.user = user;
@@ -45,7 +45,7 @@ public class Posts extends BaseTimeEntity {
         this.viewCount = viewCount;
     }
 
-    public void update(String title, String content, Integer viewCount) {
+    public void update(String title, String content, Long viewCount) {
         this.title = title;
         this.content = content;
         this.viewCount = viewCount;

@@ -27,12 +27,12 @@ public class BookRepositoryTest {
     public void testLoadingBooks() {
         //given
         String title = "test title";
-        String pubdate = "20200125";
+        String isbn = "123456";
 
         bookRepository.save(Book.builder()
                 .title(title)
                 .link("test link")
-                .pubdate(pubdate)
+                .isbn(isbn)
                 .build());
 
         //when
@@ -41,7 +41,6 @@ public class BookRepositoryTest {
         //then
         Book book = bookList.get(0);
         assertThat(book.getTitle()).isEqualTo(title);
-        assertThat(book.getPubdate()).isEqualTo(pubdate);
-        assertThat(book.getPostsCount()).isEqualTo(1);
+        assertThat(book.getIsbn()).isEqualTo(isbn);
     }
 }

@@ -4,14 +4,11 @@ import com.padoling.portfolio.august.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
-@DynamicInsert
 @Entity
 public class Book extends BaseTimeEntity {
 
@@ -29,23 +26,16 @@ public class Book extends BaseTimeEntity {
 
     private String publisher;
 
-    private String pubdate;
-
-    @ColumnDefault("1")
-    private Integer postsCount;
+    private String isbn;
 
     @Builder
-    public Book(String title, String link, String image, String author, String publisher, String pubdate, Integer postsCount) {
+    public Book(String title, String link, String image, String author, String publisher, String isbn) {
         this.title = title;
         this.link = link;
         this.image = image;
         this.author = author;
         this.publisher = publisher;
-        this.pubdate = pubdate;
-        this.postsCount = postsCount;
+        this.isbn = isbn;
     }
 
-    public void update(Integer postsCount) {
-        this.postsCount = postsCount;
-    }
 }
