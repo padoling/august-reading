@@ -36,7 +36,7 @@ public class BookRepositoryTest {
                 .build());
 
         //when
-        List<Book> bookList = bookRepository.findAll();
+        List<Book> bookList = bookRepository.findAllAsc();
 
         //then
         Book book = bookList.get(0);

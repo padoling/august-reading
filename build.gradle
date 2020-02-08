@@ -1,13 +1,16 @@
 buildscript {
     ext {
         springBootVersion = '2.1.7.RELEASE'
+        querydslPluginVersion = '1.0.10'
     }
     repositories {
         mavenCentral()
         jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}")
     }
 }
 
@@ -25,10 +28,31 @@ repositories {
 }
 
 dependencies {
+    compile('com.querydsl:querydsl-jpa')
+    compile('com.querydsl:querydsl-apt')
+
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-mustache')
     compile('org.projectlombok:lombok')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('com.h2database:h2')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+apply plugin: 'com.ewerk.gradle.plugins.querydsl'
+def querydslSrcDir = 'src/main/generated'
+
+querydsl {
+    library = 'com.querydsl:querydsl-apt'
+    jpa = true
+    querydslSourcesDir = querydslSrcDir
+}
+
+sourceSets {
+    main{
+        java {
+            srcDirs = ['src/main/java', querydslSrcDir]
+        }
+    }
 }
