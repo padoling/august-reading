@@ -1,0 +1,26 @@
+{{>layout/header}}
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>제목</th>
+            <th>이미지</th>
+            <th>저자</th>
+            <th>출판사</th>
+            <th>링크</th>
+            <th>isbn</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#books}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{image}}</a></td>
+                <td>{{author}}</td>
+                <td>{{publisher}}</td>
+                <td>{{link}}</td>
+                <td>{{isbn}}</td>
+            </tr>
+        {{/books}}
+        </tbody>
+    </table>
+{{>layout/footer}}

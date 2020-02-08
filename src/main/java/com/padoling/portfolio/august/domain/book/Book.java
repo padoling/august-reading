@@ -38,4 +38,13 @@ public class Book extends BaseTimeEntity {
         this.isbn = isbn;
     }
 
+    public Book update(String title, String link, String image, String author, String publisher) {
+        this.title = title;
+        this.link = link;
+        this.image = image;
+        this.author = author;
+        this.publisher = publisher;
+
+        return this;
+    }
 }
