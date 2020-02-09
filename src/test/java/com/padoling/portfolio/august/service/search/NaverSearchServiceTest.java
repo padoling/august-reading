@@ -23,7 +23,7 @@ public class NaverSearchServiceTest {
     @Test
     public void testSearchByQuery() {
         //given
-        String query = "test";
+        String query = "주식";
         Integer display = 10;
         Integer start = 1;
         NaverSearchRequestDto requestDto = NaverSearchRequestDto.builder()
