@@ -1,6 +1,7 @@
 package com.padoling.portfolio.august.web;
 
-import com.padoling.portfolio.august.service.book.BookService;
+import com.padoling.portfolio.august.search.dto.NaverSearchRequestDto;
+import com.padoling.portfolio.august.service.search.NaverSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class BookController {
 
-    private final BookService bookService;
+    private final NaverSearchService naverSearchService;
 
     @GetMapping("/book/list")
-    public String bookList(Model model) {
-        model.addAttribute("books", bookService.findAllAsc());
+    public String bookList(Model model, NaverSearchRequestDto requestDto) {
+        if(requestDto.getQuery() == null) {
+            return "book-list";
+        }
+
+        model.addAttribute("books", naverSearchService.searchByQuery(requestDto));
         return "book-list";
     }
 }

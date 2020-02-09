@@ -1,16 +1,13 @@
 package com.padoling.portfolio.august.search.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
+@NoArgsConstructor
 public class NaverSearchResponseDto {
     private String lastBuildDate;
     private Integer total;
@@ -20,15 +17,15 @@ public class NaverSearchResponseDto {
 
     @Getter
     @Setter
-    @NoArgsConstructor
     @ToString
-    private static class Item {
+    @NoArgsConstructor
+    public static class Item {
         private String title;
         private String link;
         private String image;
         private String author;
-        private Integer price;
-        private Integer discount;
+        private String price;
+        private String discount;
         private String publisher;
         private String isbn;
         private String description;

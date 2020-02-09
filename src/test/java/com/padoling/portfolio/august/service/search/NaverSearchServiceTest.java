@@ -2,11 +2,14 @@ package com.padoling.portfolio.august.service.search;
 
 import com.padoling.portfolio.august.search.dto.NaverSearchRequestDto;
 import com.padoling.portfolio.august.search.dto.NaverSearchResponseDto;
+import com.padoling.portfolio.august.web.dto.SearchedBookListDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,18 +29,16 @@ public class NaverSearchServiceTest {
         NaverSearchRequestDto requestDto = NaverSearchRequestDto.builder()
                 .query(query)
                 .start(start)
+                .display(display)
                 .build();
 
         //when
-        NaverSearchResponseDto responseDto = naverSearchService.searchByQuery(requestDto);
+        List<SearchedBookListDto> bookListDto = naverSearchService.searchByQuery(requestDto);
 
         //then
-        assertThat(responseDto).isNotNull();
-        assertThat(responseDto.getDisplay()).isEqualTo(display);
-        assertThat(responseDto.getLastBuildDate()).isNotNull();
-        assertThat(responseDto.getStart()).isEqualTo(start);
-        assertThat(responseDto.getTotal()).isNotNull();
-        assertThat(responseDto.getItems()).isNotNull();
-        assertThat(responseDto.getItems().size()).isEqualTo(display);
+        assertThat(bookListDto).isNotNull();
+        assertThat(bookListDto.size()).isEqualTo(display);
+        assertThat(bookListDto.get(0)).isNotNull();
+        System.out.println(bookListDto.get(0).toString());
     }
 }
