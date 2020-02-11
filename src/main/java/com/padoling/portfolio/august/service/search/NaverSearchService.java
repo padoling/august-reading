@@ -45,7 +45,9 @@ public class NaverSearchService {
 
         HttpEntity<?> httpEntity = new HttpEntity<>(setHeaders());
         NaverSearchResponseDto responseDto = restTemplate.exchange(uri.toString(), HttpMethod.GET, httpEntity, NaverSearchResponseDto.class).getBody();
-        //TODO getItems() Null처리 해줘야 함
+        if(responseDto.getTotal() == 0) {
+            return null;
+        }
         return responseDto.getItems().stream()
                 .map(SearchedBookListDto::new)
                 .collect(Collectors.toList());
