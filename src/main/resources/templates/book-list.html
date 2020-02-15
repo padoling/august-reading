@@ -19,28 +19,33 @@
     </form>
 
     <!-- 리스트 -->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
-        <tr>
-            <th>제목</th>
-            <th>이미지</th>
-            <th>저자</th>
-            <th>출판사</th>
-            <th>링크</th>
-            <th>isbn</th>
-        </tr>
-        </thead>
-        <tbody th:if="${books != null}" id="tbody">
-            <tr th:each="book:${books.items}">
-                <td th:utext="${book.title}"></td>
-                <td><img th:src="${book.image}" class="img-thumbnail" alt="..."></td>
-                <td th:utext="${book.author}"></td>
-                <td th:utext="${book.publisher}"></td>
-                <td th:text="${book.link}"></td>
-                <td th:text="${book.isbn}"></td>
-            </tr>
-        </tbody>
-    </table>
+    <th:block th:if="${books != null}">
+        <th:block th:each="book,iterStat:${books.items}">
+            <div class="card mt-5" data-toggle="collapse" th:href="@{'#collapse' + ${iterStat.index}}" th:attr="aria-controls='collapse' + ${iterStat.index}" aria-expanded="false" style="max-width: 750px;">
+                <div class="row no-gutters">
+                    <div class="col-auto">
+                        <img img th:src="${book.image}" class="card-img img-thumbnail" alt="...">
+                    </div>
+                    <div class="col">
+                        <div class="card-body py-1">
+                            <h6 class="card-title mb-0" th:utext="${book.title}"></h6>
+                            <p class="card-text mb-0">
+                                <span th:text="${book.author}"></span> |
+                                <span th:text="${book.publisher}"></span> |
+                                <span th:text="${book.pubdate}"></span>
+                            </p>
+                            <p class="card-text"><small class="text-muted" th:utext="${book.description}"></small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" th:id="'collapse' + ${iterStat.index}" style="max-width: 750px;">
+                <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+            </div>
+        </th:block>
+    </th:block>
 
     <!-- pagination -->
     <nav aria-label="Page navigation example">
