@@ -2,14 +2,11 @@ package com.padoling.portfolio.august.service.search;
 
 import com.padoling.portfolio.august.search.dto.NaverSearchRequestDto;
 import com.padoling.portfolio.august.search.dto.NaverSearchResponseDto;
-import com.padoling.portfolio.august.web.dto.SearchedBookListDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,7 +22,7 @@ public class NaverSearchServiceTest {
         //given
         String query = "주식";
         Integer display = 10;
-        Integer start = 1;
+        Integer start = 999;
         NaverSearchRequestDto requestDto = NaverSearchRequestDto.builder()
                 .query(query)
                 .start(start)
@@ -33,12 +30,16 @@ public class NaverSearchServiceTest {
                 .build();
 
         //when
-        List<SearchedBookListDto> bookListDto = naverSearchService.searchByQuery(requestDto);
+        NaverSearchResponseDto responseDto = naverSearchService.searchByQuery(requestDto);
 
         //then
-        assertThat(bookListDto).isNotNull();
-        assertThat(bookListDto.size()).isEqualTo(display);
-        assertThat(bookListDto.get(0)).isNotNull();
-        System.out.println(bookListDto.get(0).toString());
+        assertThat(responseDto).isNotNull();
+        assertThat(responseDto.getQuery()).isEqualTo(query);
+        assertThat(responseDto.getStart()).isEqualTo(start);
+        assertThat(responseDto.getDisplay()).isEqualTo(display);
+        assertThat(responseDto.isFirst()).isEqualTo(false);
+        assertThat(responseDto.isLast()).isEqualTo(true);
+        assertThat(responseDto.getItems().get(0)).isNotNull();
+        System.out.println(responseDto.getItems().get(0).toString());
     }
 }

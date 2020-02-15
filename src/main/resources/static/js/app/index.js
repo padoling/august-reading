@@ -3,6 +3,6 @@ var main = {
         var _this = this;
 
     }
-};
+}
 
 main.init();

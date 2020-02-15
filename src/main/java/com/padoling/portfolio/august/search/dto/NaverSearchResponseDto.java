@@ -13,6 +13,9 @@ public class NaverSearchResponseDto {
     private Integer total;
     private Integer start;
     private Integer display;
+    private String query;
+    private boolean isFirst;
+    private boolean isLast;
     private List<Item> items;
 
     @Getter

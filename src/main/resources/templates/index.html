@@ -1,8 +1,12 @@
-{{>layout/header}}
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/header"></th:block>
+<body>
+    <th:block th:include="fragments/nav-bar"></th:block>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h2 class="display-4">가볍게 쓰고 공유하는 독서일기</h2>
-            <p class="lead">책 읽고 일기 쓰듯이 리뷰 적으세용~ 다른 사람들이 적은 리뷰도 볼 수 있어용~ ><</p>
+            <p class="lead">책 읽고 일기 쓰듯이 리뷰 적으세용~ 다른 사람들이 적은 리뷰도 볼 수 있어용</p>
         </div>
     </div>
 
@@ -51,4 +55,6 @@
         </div>
     </div>
 
-{{>layout/footer}}
+    <th:block th:include="fragments/footer"></th:block>
+</body>
+</html>

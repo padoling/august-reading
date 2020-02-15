@@ -2,16 +2,12 @@ package com.padoling.portfolio.august.service.search;
 
 import com.padoling.portfolio.august.search.dto.NaverSearchRequestDto;
 import com.padoling.portfolio.august.search.dto.NaverSearchResponseDto;
-import com.padoling.portfolio.august.web.dto.SearchedBookListDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class NaverSearchService {
@@ -36,7 +32,11 @@ public class NaverSearchService {
         return httpHeaders;
     }
 
-    public List<SearchedBookListDto> searchByQuery(NaverSearchRequestDto requestDto) {
+    private boolean isLast(Integer start, Integer display, Integer total) {
+        return start + display > 1000 || start + display > total;
+    }
+
+    public NaverSearchResponseDto searchByQuery(NaverSearchRequestDto requestDto) {
         UriComponents uri = UriComponentsBuilder.fromHttpUrl(REQUEST_URL)
                 .queryParam("query", requestDto.getQuery())
                 .queryParam("display", requestDto.getDisplay())
@@ -45,11 +45,11 @@ public class NaverSearchService {
 
         HttpEntity<?> httpEntity = new HttpEntity<>(setHeaders());
         NaverSearchResponseDto responseDto = restTemplate.exchange(uri.toString(), HttpMethod.GET, httpEntity, NaverSearchResponseDto.class).getBody();
-        if(responseDto.getTotal() == 0) {
-            return null;
+        responseDto.setQuery(requestDto.getQuery());
+        if(requestDto.getStart() == 1) {
+            responseDto.setFirst(true);
         }
-        return responseDto.getItems().stream()
-                .map(SearchedBookListDto::new)
-                .collect(Collectors.toList());
+        responseDto.setLast(isLast(requestDto.getStart(), requestDto.getDisplay(), responseDto.getTotal()));
+        return responseDto;
     }
 }
