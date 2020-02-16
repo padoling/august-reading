@@ -24,26 +24,43 @@ public class Book extends BaseTimeEntity {
 
     private String author;
 
+    private String price;
+
+    private String discount;
+
     private String publisher;
 
     private String isbn;
 
+    private String description;
+
+    private String pubdate;
+
     @Builder
-    public Book(String title, String link, String image, String author, String publisher, String isbn) {
+    public Book(String title, String link, String image, String author, String price, String discount, String publisher, String isbn, String description, String pubdate) {
         this.title = title;
         this.link = link;
         this.image = image;
         this.author = author;
+        this.price = price;
+        this.discount = discount;
         this.publisher = publisher;
         this.isbn = isbn;
+        this.description = description;
+        this.pubdate = pubdate;
     }
 
-    public Book update(String title, String link, String image, String author, String publisher) {
+    public Book update(String title, String link, String image, String author, String price, String discount, String publisher, String isbn, String description, String pubdate) {
         this.title = title;
         this.link = link;
         this.image = image;
         this.author = author;
+        this.price = price;
+        this.discount = discount;
         this.publisher = publisher;
+        this.isbn = isbn;
+        this.description = description;
+        this.pubdate = pubdate;
 
         return this;
     }

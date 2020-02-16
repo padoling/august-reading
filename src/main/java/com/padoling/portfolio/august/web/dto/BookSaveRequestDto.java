@@ -16,8 +16,12 @@ public class BookSaveRequestDto {
     private String link;
     private String image;
     private String author;
+    private String price;
+    private String discount;
     private String publisher;
     private String isbn;
+    private String description;
+    private String pubdate;
 
     public Book toEntity() {
         return Book.builder()
@@ -25,8 +29,12 @@ public class BookSaveRequestDto {
                 .link(link)
                 .image(image)
                 .author(author)
+                .price(price)
+                .discount(discount)
                 .publisher(publisher)
                 .isbn(isbn)
+                .description(description)
+                .pubdate(pubdate)
                 .build();
     }
 }

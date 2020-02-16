@@ -4,7 +4,7 @@
 <body>
     <th:block th:include="fragments/nav-bar"></th:block>
     <!-- 검색창 -->
-    <form action="/book/list">
+        <form action="/book/list">
         <div class="form-row align-items-center">
             <div class="col-auto">
                 <input type="search" class="form-control mb-2" name="query"
@@ -21,7 +21,8 @@
     <!-- 리스트 -->
     <th:block th:if="${books != null}">
         <th:block th:each="book,iterStat:${books.items}">
-            <div class="card mt-5" data-toggle="collapse" th:href="@{'#collapse' + ${iterStat.index}}" th:attr="aria-controls='collapse' + ${iterStat.index}" aria-expanded="false" style="max-width: 750px;">
+            <div class="card mt-5" data-toggle="collapse" th:id="'book' + ${iterStat.index}"
+                 th:href="@{'#collapse' + ${iterStat.index}}" th:attr="aria-controls='collapse' + ${iterStat.index}" aria-expanded="false" style="max-width: 750px;">
                 <div class="row no-gutters">
                     <div class="col-auto">
                         <img img th:src="${book.image}" class="card-img img-thumbnail" alt="...">
@@ -39,9 +40,16 @@
                     </div>
                 </div>
             </div>
-            <div class="collapse" th:id="'collapse' + ${iterStat.index}" style="max-width: 750px;">
+            <div class="collapse info-collapse" th:id="'collapse' + ${iterStat.index}" style="max-width: 750px;">
+                <input type="hidden" id="isbn" name="isbn" th:value="${book.isbn}">
+                <input type="hidden" id="pubdate" name="pubdate" th:value="${book.pubdate}">
                 <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    <p class="card-text" id="review">리뷰 빵개</p>
+                    <p class="card-text">별점 : 0점</p>
+                    <p class="card-text">
+                        <button type="button" class="btn btn-primary">리뷰 작성</button>
+                        <button type="button" class="btn btn-success">상세 정보<small>Naver</small></button>
+                    </p>
                 </div>
             </div>
         </th:block>
@@ -70,5 +78,6 @@
     </nav>
 
     <th:block th:include="fragments/footer"></th:block>
+    <script src="/js/app/book-list.js"></script>
 </body>
 </html>

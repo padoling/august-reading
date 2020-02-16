@@ -36,11 +36,35 @@ public class BookRepositoryTest {
                 .build());
 
         //when
-        List<Book> bookList = bookRepository.findAllAsc();
+        List<Book> bookList = bookRepository.findAll();
 
         //then
         Book book = bookList.get(0);
         assertThat(book.getTitle()).isEqualTo(title);
         assertThat(book.getIsbn()).isEqualTo(isbn);
+    }
+
+    @Test
+    public void testFindByIsbnAndPubdate() {
+        //given
+        String isbn = "test isbn";
+        String pubdate = "test pubdate";
+
+        bookRepository.save(Book.builder()
+                .isbn(isbn)
+                .pubdate(pubdate)
+                .build()
+        );
+
+        //when
+        Book book1 = bookRepository.findByIsbnAndPubdate(isbn, pubdate)
+                .orElse(null);
+        Book book2 = bookRepository.findByIsbnAndPubdate("isbn", "pubdate")
+                .orElse(null);
+
+        //then
+        assertThat(book1).isNotNull();
+        assertThat(book1.getId()).isEqualTo(1);
+        assertThat(book2).isNull();
     }
 }
