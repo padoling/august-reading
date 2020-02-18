@@ -25,8 +25,6 @@ public class BookService {
                         requestDto.getLink(),
                         requestDto.getImage(),
                         requestDto.getAuthor(),
-                        requestDto.getPrice(),
-                        requestDto.getDiscount(),
                         requestDto.getPublisher(),
                         requestDto.getIsbn(),
                         requestDto.getDescription(),
@@ -51,4 +49,5 @@ public class BookService {
                 .postsCount(postsCount)
                 .build();
     }
+
 }

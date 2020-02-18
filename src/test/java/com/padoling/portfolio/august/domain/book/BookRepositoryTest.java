@@ -64,7 +64,8 @@ public class BookRepositoryTest {
 
         //then
         assertThat(book1).isNotNull();
-        assertThat(book1.getId()).isEqualTo(1);
+        assertThat(book1.getIsbn()).isEqualTo(isbn);
+        assertThat(book1.getPubdate()).isEqualTo(pubdate);
         assertThat(book2).isNull();
     }
 }

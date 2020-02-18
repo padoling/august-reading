@@ -1,0 +1,10 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/header"></th:block>
+<body>
+    <th:block th:include="fragments/nav-bar"></th:block>
+    <h3 th:text="${book.title}"></h3>
+
+    <th:block th:include="fragments/footer"></th:block>
+</body>
+</html>
