@@ -18,7 +18,6 @@ public class BookApiController {
 
     @GetMapping("/api/v1/book/info")
     public BookInfoResponseDto findBookInfo(BookInfoRequestDto requestDto) {
-        System.out.println("===============isbn : " + requestDto.getIsbn());
         return bookService.findBookInfo(requestDto);
     }
 

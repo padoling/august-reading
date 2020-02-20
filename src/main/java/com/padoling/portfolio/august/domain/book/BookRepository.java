@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<Book, Long>, BookRepositoryCustom {
     Optional<Book> findByIsbnAndPubdate(String isbn, String pubdate);
-    Book findById(String id);
+    Optional<Book> findById(String id);
 }

@@ -5,6 +5,7 @@ import com.padoling.portfolio.august.domain.book.BookRepository;
 import com.padoling.portfolio.august.domain.posts.PostsRepository;
 import com.padoling.portfolio.august.web.dto.BookInfoRequestDto;
 import com.padoling.portfolio.august.web.dto.BookInfoResponseDto;
+import com.padoling.portfolio.august.web.dto.BookResponseDto;
 import com.padoling.portfolio.august.web.dto.BookSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -50,4 +51,10 @@ public class BookService {
                 .build();
     }
 
+    public BookResponseDto findById(Long id) {
+        Book entity = bookRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 아이다가 없습니다. id=" + id));
+
+        return new BookResponseDto(entity);
+    }
 }

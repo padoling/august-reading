@@ -1,7 +1,8 @@
 package com.padoling.portfolio.august.web;
 
 import com.padoling.portfolio.august.search.dto.NaverSearchRequestDto;
-import com.padoling.portfolio.august.service.search.NaverSearchService;
+import com.padoling.portfolio.august.search.NaverSearchService;
+import com.padoling.portfolio.august.service.book.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class IndexController {
 
     private final NaverSearchService naverSearchService;
+    private final BookService bookService;
 
     @GetMapping("/")
     public String index() {
@@ -29,7 +31,8 @@ public class IndexController {
     }
 
     @GetMapping("/posts/write")
-    public String postsWrite(Model model, @RequestParam String bookId) {
+    public String postsWrite(Model model, @RequestParam Long bookId) {
+        model.addAttribute("book", bookService.findById(bookId));
         return "posts-write";
     }
 }
