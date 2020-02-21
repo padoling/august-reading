@@ -16,14 +16,17 @@ public class Stars extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "STARS_ID")
     private Long id;
 
     private Integer score;
 
     @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "BOOK_ID")
     private Book book;
 
     @Builder

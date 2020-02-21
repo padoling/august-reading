@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:include="fragments/header"></th:block>
+<head>
+    <th:block th:include="fragments/header"></th:block>
+</head>
 <body>
     <th:block th:include="fragments/nav-bar"></th:block>
     <!-- 검색창 -->
@@ -22,7 +24,8 @@
     <th:block th:if="${books != null}">
         <th:block th:each="book,iterStat:${books.items}">
             <div class="card mt-5" data-toggle="collapse" th:id="'book' + ${iterStat.index}"
-                 th:href="@{'#collapse' + ${iterStat.index}}" th:attr="aria-controls='collapse' + ${iterStat.index}" aria-expanded="false" style="max-width: 750px;">
+                 th:href="@{'#collapse' + ${iterStat.index}}" th:attr="aria-controls='collapse' + ${iterStat.index}"
+                 aria-expanded="false" style="max-width: 750px;">
                 <div class="row no-gutters">
                     <div class="col-auto">
                         <img class="card-img img-thumbnail book-image" th:src="${book.image}" alt="...">

@@ -19,15 +19,17 @@ public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "POSTS_ID")
     private Long id;
 
     @Column(length = 500, nullable = false)
-    private String title;
+    private String subject;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
     @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne
@@ -37,16 +39,16 @@ public class Posts extends BaseTimeEntity {
     private Long viewCount;
 
     @Builder
-    public Posts(String title, String content, User user, Book book, Long viewCount) {
-        this.title = title;
+    public Posts(String subject, String content, User user, Book book, Long viewCount) {
+        this.subject = subject;
         this.content = content;
         this.user = user;
         this.book = book;
         this.viewCount = viewCount;
     }
 
-    public void update(String title, String content, Long viewCount) {
-        this.title = title;
+    public void update(String subject, String content, Long viewCount) {
+        this.subject = subject;
         this.content = content;
         this.viewCount = viewCount;
     }

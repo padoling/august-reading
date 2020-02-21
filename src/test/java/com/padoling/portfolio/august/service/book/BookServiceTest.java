@@ -94,7 +94,7 @@ public class BookServiceTest {
                 .orElse(null);
 
         postsRepository.save(Posts.builder()
-                .title("title")
+                .subject("subject")
                 .content("content")
                 .book(book)
                 .build());

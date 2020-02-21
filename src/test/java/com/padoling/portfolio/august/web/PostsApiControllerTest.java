@@ -1,9 +1,10 @@
 package com.padoling.portfolio.august.web;
 
-import com.padoling.portfolio.august.domain.book.Book;
 import com.padoling.portfolio.august.domain.book.BookRepository;
-import com.padoling.portfolio.august.web.dto.BookResponseDto;
+import com.padoling.portfolio.august.domain.posts.Posts;
+import com.padoling.portfolio.august.domain.posts.PostsRepository;
 import com.padoling.portfolio.august.web.dto.BookSaveRequestDto;
+import com.padoling.portfolio.august.web.dto.PostsSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +21,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-public class BookApiControllerTest {
+public class PostsApiControllerTest {
 
     @LocalServerPort
     private int port;
@@ -29,28 +30,38 @@ public class BookApiControllerTest {
     private TestRestTemplate restTemplate;
 
     @Autowired
+    private PostsRepository postsRepository;
+
+    @Autowired
     private BookRepository bookRepository;
 
     @After
     public void tearDown() {
+        postsRepository.deleteAll();
         bookRepository.deleteAll();
     }
 
     @Test
-    public void testSaveBook() {
+    public void testSavePosts() {
         //given
-        String title = "test title";
-        String author = "test author";
-        String isbn = "test isbn";
-        String pubdate = "test pubdate";
-        BookSaveRequestDto requestDto = BookSaveRequestDto.builder()
-                .title(title)
-                .author(author)
-                .isbn(isbn)
-                .pubdate(pubdate)
+        BookSaveRequestDto bookSaveRequestDto = BookSaveRequestDto.builder()
+                .title("title")
+                .author("author")
                 .build();
 
-        String url = "http://localhost:" + port + "/api/v1/book";
+        String bookUrl = "http://localhost:" + port + "/api/v1/book";
+
+        Long bookId = restTemplate.postForEntity(bookUrl, bookSaveRequestDto, Long.class).getBody();
+
+        String subject = "test subject";
+        String content = "test content";
+        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+                .subject(subject)
+                .content(content)
+                .bookId(bookId)
+                .build();
+
+        String url = "http://localhost:" + port + "/api/v1/posts";
 
         //when
         ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
@@ -59,11 +70,12 @@ public class BookApiControllerTest {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
-        Book book = bookRepository.findById(responseEntity.getBody())
+        Posts posts = postsRepository.findById(responseEntity.getBody())
                 .orElse(null);
-        assertThat(book).isNotNull();
-        BookResponseDto responseDto = new BookResponseDto(book);
-        assertThat(responseDto.getTitle()).isEqualTo(title);
-        assertThat(responseDto.getIsbn()).isEqualTo(isbn);
+        assertThat(posts).isNotNull();
+        assertThat(posts.getSubject()).isEqualTo(subject);
+        assertThat(posts.getContent()).isEqualTo(content);
+        assertThat(posts.getBook().getId()).isEqualTo(bookId);
+        assertThat(posts.getViewCount()).isEqualTo(0);
     }
 }

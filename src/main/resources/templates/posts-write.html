@@ -1,11 +1,47 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:include="fragments/header"></th:block>
+<head>
+    <th:block th:include="fragments/header"></th:block>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+</head>
 <body>
     <th:block th:include="fragments/nav-bar"></th:block>
-    <h3 th:text="${book.title}"></h3>
-    <h5 th:text="${book.author}"></h5>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-auto">
+                <div class="card mt-5" style="width: 750px;">
+                    <div class="row no-gutters">
+                        <div class="col-auto">
+                            <img class="card-img img-thumbnail book-image" th:src="${book.image}" alt="...">
+                        </div>
+                        <div class="col">
+                            <div class="card-body py-1">
+                                <h6 class="card-title mb-0 book-title" th:utext="${book.title}"></h6>
+                                <p class="card-text mb-0">
+                                    <span class="book-author" th:text="${book.author}"></span> |
+                                    <span class="book-publisher" th:text="${book.publisher}"></span> |
+                                    <span class="book-pubdate" th:text="${book.pubdate}"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form id="content" role="form" action="/article" method="post">
+                    <br style="clear: both">
+                    <h3 style="margin-bottom: 25px;">리뷰 작성</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="제목" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="summernote" name="content" placeholder="content" maxlength="140" rows="7"></textarea>
+                    </div>
+                    <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">작성 완료</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <th:block th:include="fragments/footer"></th:block>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 </body>
 </html>

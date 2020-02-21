@@ -61,11 +61,11 @@ public class PostsRepositoryTest {
         List<Book> bookList = bookRepository.findAll();
         Book book = bookList.get(0);
 
-        String title = "test title";
+        String subject = "test subject";
         String content = "test content";
 
         postsRepository.save(Posts.builder()
-                .title(title)
+                .subject(subject)
                 .content(content)
                 .user(user)
                 .book(book)
@@ -76,7 +76,7 @@ public class PostsRepositoryTest {
 
         //then
         Posts posts = postsList.get(0);
-        assertThat(posts.getTitle()).isEqualTo(title);
+        assertThat(posts.getSubject()).isEqualTo(subject);
         assertThat(posts.getContent()).isEqualTo(content);
         assertThat(posts.getUser().getId()).isEqualTo(user.getId());
         assertThat(posts.getBook().getId()).isEqualTo(book.getId());
@@ -88,7 +88,7 @@ public class PostsRepositoryTest {
         //given
         LocalDateTime now = LocalDateTime.of(2020,1,28,0,0,0);
         postsRepository.save(Posts.builder()
-                .title("title")
+                .subject("subject")
                 .content("content")
                 .build());
 
