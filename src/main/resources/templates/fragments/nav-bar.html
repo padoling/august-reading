@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">리뷰 목록</a>
+                <a class="nav-link" href="/posts">리뷰 목록</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/book/list">책 목록</a>
@@ -20,7 +20,7 @@
                 <a class="nav-link" href="#">내가 쓴 리뷰</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="/book/list">
+        <form class="form-inline my-2 my-lg-0" action="/book/list" method="GET">
             <input class="form-control mr-sm-2" type="search" name="query" placeholder="책 검색" aria-label="Search">
             <input type="hidden" name="start" value="1">
             <input type="hidden" name="display" value="10">

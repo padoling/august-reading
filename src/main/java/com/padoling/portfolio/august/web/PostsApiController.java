@@ -1,8 +1,8 @@
 package com.padoling.portfolio.august.web;
 
 import com.padoling.portfolio.august.service.posts.PostsService;
-import com.padoling.portfolio.august.web.dto.PostsResponseDto;
-import com.padoling.portfolio.august.web.dto.PostsSaveRequestDto;
+import com.padoling.portfolio.august.web.dto.posts.PostsResponseDto;
+import com.padoling.portfolio.august.web.dto.posts.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

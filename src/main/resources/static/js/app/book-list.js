@@ -20,7 +20,6 @@ var main = {
             url : '/api/v1/book/info?isbn=' + isbn + '&pubdate=' + pubdate,
             dataType : 'json'
         }).done(function(json) {
-            console.log('response data : ' + JSON.stringify(json));
             $review.text('리뷰 ' + json.postsCount + '개');
             if(json.postsCount > 0) {
                 $review.append('<button type="button" class="btn btn-outline-primary btn-sm">리뷰 보기</button>');
@@ -43,7 +42,7 @@ var main = {
             pubdate : $book.find('.book-pubdate').text()
         };
 
-        console.log(JSON.stringify(data));
+        console.log(JSON.stringify(data))
 
         $.ajax({
             type : 'POST',
@@ -51,10 +50,8 @@ var main = {
             dataType : 'json',
             contentType : 'application/json; charset=utf-8',
             data : JSON.stringify(data)
-        }).done(function(json, status) {
-            console.log('response data : ' + json);
-            console.log('status : ' + status);
-            window.location.href = '/posts/write?bookId=' + json;
+        }).done(function(bookId) {
+            window.location.href = '/posts/write?bookId=' + bookId;
         }).fail(function(error) {
             alert(JSON.stringify(error));
         });

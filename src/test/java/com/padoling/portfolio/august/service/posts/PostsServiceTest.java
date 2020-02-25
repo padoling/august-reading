@@ -5,7 +5,7 @@ import com.padoling.portfolio.august.domain.book.BookRepository;
 import com.padoling.portfolio.august.domain.posts.Posts;
 import com.padoling.portfolio.august.domain.posts.PostsRepository;
 import com.padoling.portfolio.august.service.book.BookService;
-import com.padoling.portfolio.august.web.dto.PostsSaveRequestDto;
+import com.padoling.portfolio.august.web.dto.posts.PostsSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;

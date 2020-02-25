@@ -6,7 +6,7 @@
 <body>
     <th:block th:include="fragments/nav-bar"></th:block>
     <!-- 검색창 -->
-        <form action="/book/list">
+        <form action="/book/list" method="GET">
         <div class="form-row align-items-center">
             <div class="col-auto">
                 <input type="search" class="form-control mb-2" name="query"

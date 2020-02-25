@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="fragments/header"></th:block>
-    <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
 </head>
 <body>
     <th:block th:include="fragments/nav-bar"></th:block>
@@ -30,25 +29,18 @@
                     </div>
                 </div>
 
-                <!-- 리뷰 작성란 -->
-                <form>
-                    <h3>리뷰 작성</h3>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="subject" name="subject" placeholder="제목" required>
+                <div class="posts-container my-5">
+                    <div class="post">
+                        <h1 th:text="${post.subject}"></h1>
+                        <span class="post-date" th:text="${post.createdDate}"></span>
+                        <p th:utext="${post.content}"></p>
                     </div>
-                    <div class="form-group">
-                        <textarea class="form-control" id="summernote" name="content" maxlength="140" rows="7"></textarea>
-                    </div>
-                    <button id="btn-save" class="btn btn-primary">작성 완료</button>
-                </form>
+                </div>
+                <a type="button" href="/posts" class="btn btn-primary">리뷰 목록</a>
             </div>
             <div class="col"></div>
         </div>
     </div>
-
     <th:block th:include="fragments/footer"></th:block>
-    <script src="/js/app/posts-write.js"></script>
-    <script src="/js/summernote/summernote-lite.js"></script>
-    <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
 </body>
 </html>

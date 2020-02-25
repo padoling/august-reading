@@ -1,9 +1,9 @@
 package com.padoling.portfolio.august.web;
 
 import com.padoling.portfolio.august.service.book.BookService;
-import com.padoling.portfolio.august.web.dto.BookInfoRequestDto;
-import com.padoling.portfolio.august.web.dto.BookInfoResponseDto;
-import com.padoling.portfolio.august.web.dto.BookSaveRequestDto;
+import com.padoling.portfolio.august.web.dto.book.BookInfoRequestDto;
+import com.padoling.portfolio.august.web.dto.book.BookInfoResponseDto;
+import com.padoling.portfolio.august.web.dto.book.BookSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,4 +1,4 @@
-package com.padoling.portfolio.august.web.dto;
+package com.padoling.portfolio.august.web.dto.book;
 
 import lombok.*;
 

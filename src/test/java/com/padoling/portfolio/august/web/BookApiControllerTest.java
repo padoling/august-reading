@@ -2,8 +2,8 @@ package com.padoling.portfolio.august.web;
 
 import com.padoling.portfolio.august.domain.book.Book;
 import com.padoling.portfolio.august.domain.book.BookRepository;
-import com.padoling.portfolio.august.web.dto.BookResponseDto;
-import com.padoling.portfolio.august.web.dto.BookSaveRequestDto;
+import com.padoling.portfolio.august.web.dto.book.BookResponseDto;
+import com.padoling.portfolio.august.web.dto.book.BookSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
