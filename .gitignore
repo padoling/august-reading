@@ -3,3 +3,4 @@
 .idea
 generated
 application-naverapi.properties
+application-oauth.properties
