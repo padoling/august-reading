@@ -53,7 +53,7 @@ public class BookService {
 
     public BookResponseDto findById(Long id) {
         Book entity = bookRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 아이다가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 아이디가 없습니다. id=" + id));
 
         return new BookResponseDto(entity);
     }

@@ -37,6 +37,7 @@ var main = {
             processData : false,
             data : form_data,
         }).done(function(url) {
+            console.log("url : " + url);
             $(el).summernote('editor.insertImage', url);
             $('#imageBoard > ul').append('<li><img src="'+url+'" width=480 height="auto"/></li>');
         }).fail(function(error) {
