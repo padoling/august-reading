@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/header"></th:block>
+</head>
+<body>
+    <th:block th:include="fragments/nav-bar"></th:block>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-lg-auto">
+                <!-- 책 정보 -->
+                <div class="card mt-5" style="width: 750px;">
+                    <div class="row no-gutters">
+                        <div class="col-auto">
+                            <img class="card-img img-thumbnail book-image" th:src="${book.image}" alt="...">
+                        </div>
+                        <div class="col">
+                            <div class="card-body py-1">
+                                <h6 class="card-title mb-0 book-title" th:utext="${book.title}"></h6>
+                                <p class="card-text mb-0">
+                                    <span class="book-author" th:text="${book.author}"></span> |
+                                    <span class="book-publisher" th:text="${book.publisher}"></span> |
+                                    <span class="book-pubdate" th:text="${book.pubdate}"></span>
+                                </p>
+                                <input type="hidden" id="bookId" name="bookId" th:value="${book.id}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="posts-container my-5">
+                    <div class="post">
+                        <h1 th:text="${post.subject}"></h1>
+                        <span class="post-date" th:text="${post.createdDate}"></span>
+                        <p th:utext="${post.content}"></p>
+                    </div>
+                </div>
+                <a type="button" href="/posts" class="btn btn-primary">리뷰 목록</a>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    <th:block th:include="fragments/footer"></th:block>
+</body>
+</html>

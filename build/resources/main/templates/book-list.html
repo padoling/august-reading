@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/header"></th:block>
+</head>
+<body>
+    <th:block th:include="fragments/nav-bar"></th:block>
+    <!-- 검색창 -->
+        <form action="/book/list" method="GET">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <input type="search" class="form-control mb-2" name="query"
+                       th:value="${books==null ? null : books.query}" placeholder="책 검색">
+                <input type="hidden" name="start" value="1">
+                <input type="hidden" name="display" value="10">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- 리스트 -->
+    <th:block th:if="${books != null}">
+        <th:block th:each="book,iterStat:${books.items}">
+            <div class="card mt-5" data-toggle="collapse" th:id="'book' + ${iterStat.index}"
+                 th:href="@{'#collapse' + ${iterStat.index}}" th:attr="aria-controls='collapse' + ${iterStat.index}"
+                 aria-expanded="false" style="max-width: 750px;">
+                <div class="row no-gutters">
+                    <div class="col-auto">
+                        <img class="card-img img-thumbnail book-image" th:src="${book.image}" alt="...">
+                    </div>
+                    <div class="col">
+                        <div class="card-body py-1">
+                            <h6 class="card-title mb-0 book-title" th:utext="${book.title}"></h6>
+                            <p class="card-text mb-0">
+                                <span class="book-author" th:text="${book.author}"></span> |
+                                <span class="book-publisher" th:text="${book.publisher}"></span> |
+                                <span class="book-pubdate" th:text="${book.pubdate}"></span>
+                            </p>
+                            <p class="card-text"><small class="text-muted book-description" th:utext="${book.description}"></small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse info-collapse" th:id="'collapse' + ${iterStat.index}" style="max-width: 750px;">
+                <input class="book-index" type="hidden" name="index" th:value="${iterStat.index}">
+                <input class="book-isbn" type="hidden" name="isbn" th:value="${book.isbn}">
+                <div class="card card-body">
+                    <p class="card-text" id="review">리뷰 빵개</p>
+                    <p class="card-text">별점 : 0점</p>
+                    <div>
+                        <button type="submit" class="btn btn-primary review-button">리뷰 작성</button>
+                        <a class="btn btn-success book-link" th:href="${book.link}" target="_blank">상세 정보<small>Naver</small></a>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </th:block>
+
+    <!-- pagination -->
+    <nav aria-label="Page navigation example">
+        <ul th:if="${books != null}" class="pagination justify-content-start">
+            <li th:if="${books.first == false}" class="page-item">
+                <a class="page-link"
+                   th:href="@{/book/list(query=${books.query}, start=${books.start-10}, display=10)}">Previous</a>
+            </li>
+            <li th:if="${books.first == true}" class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+        </ul>
+        <ul th:if="${books != null}" class="pagination justify-content-end">
+            <li th:if="${books.last == false}" class="page-item">
+                <a class="page-link"
+                   th:href="@{/book/list(query=${books.query}, start=${books.start+10}, display=10)}">Next</a>
+            </li>
+            <li th:if="${books.last == true}" class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+    <th:block th:include="fragments/footer"></th:block>
+    <script th:inline="javascript" src="/js/app/book-list.js"></script>
+</body>
+</html>

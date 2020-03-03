@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/header"></th:block>
+</head>
+<body>
+    <th:block th:include="fragments/nav-bar"></th:block>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h2 class="display-4">가볍게 쓰고 공유하는 독서일기</h2>
+            <p class="lead">책 읽고 일기 쓰듯이 리뷰 적으세용~ 다른 사람들이 적은 리뷰도 볼 수 있어용</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+
+            <!-- recent reviews -->
+            <div class="col-lg-auto py-3">
+                <h4 class="mb-3">최신 리뷰</h4>
+
+                <!-- recent review cards -->
+                <div class="card mt-5" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="width: 750px;">
+                    <div class="row no-gutters">
+                        <div class="col-auto">
+                            <img src="https://bookthumb-phinf.pstatic.net/cover/136/085/13608567.jpg?type=m1&udate=20180520" width="82" height="124" class="card-img img-thumbnail" alt="...">
+                        </div>
+                        <div class="col">
+                            <div class="card-body py-1">
+                                <p class="card-title mb-0"><strong>고양이 2</strong></p>
+                                <p class="card-text mb-0 text-muted">베르나르 베르베르 작 | 열린책들 | 2018.06.13</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseExample" style="width: 750px;">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+
+                <div class="card mt-5" style="width: 750px;">
+                    <div class="row no-gutters">
+                        <div class="col-auto">
+                            <img src="https://bookthumb-phinf.pstatic.net/cover/136/085/13608567.jpg?type=m1&udate=20180520" width="82" height="124" class="card-img img-thumbnail" alt="...">
+                        </div>
+                        <div class="col">
+                            <div class="card-body py-1">
+                                <p class="card-title mb-0">고양이 2</p>
+                                <p class="card-text mb-0">베르나르 베르베르 작 | 열린책들 | 2018.06.13</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col"></div>
+        </div>
+    </div>
+
+    <th:block th:include="fragments/footer"></th:block>
+    <script src="/js/app/index.js"></script>
+</body>
+</html>
