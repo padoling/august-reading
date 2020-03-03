@@ -28,8 +28,32 @@
         </form>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">로그인</a>
+                <button th:if="${userName == null}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">로그인</button>
+                <a th:if="${userName != null}" class="nav-link" href="#" th:text="${userName} + '님'"></a>
+            </li>
+            <li th:if="${userName != null}" class="nav-item">
+                <a role="button" class="btn btn-primary" href="/logout">로그아웃</a>
             </li>
         </ul>
     </div>
 </nav>
+
+<!-- login modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">소셜 로그인</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <a role="button" class="btn btn-primary" href="/oauth2/authorization/google">구글 계정으로 로그인</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
