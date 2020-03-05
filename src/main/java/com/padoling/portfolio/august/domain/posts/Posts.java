@@ -33,6 +33,7 @@ public class Posts extends BaseTimeEntity {
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "BOOK_ID")
     private Book book;
 
     @ColumnDefault("0")

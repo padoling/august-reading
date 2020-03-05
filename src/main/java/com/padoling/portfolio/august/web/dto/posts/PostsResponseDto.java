@@ -10,6 +10,7 @@ public class PostsResponseDto {
 
     private Long id;
     private Long bookId;
+    private String author;
     private String subject;
     private String content;
     private LocalDateTime createdDate;
@@ -18,6 +19,7 @@ public class PostsResponseDto {
     public PostsResponseDto(Posts entity) {
         this.id = entity.getId();
         this.bookId = entity.getBook().getId();
+        this.author = entity.getUser().getName();
         this.subject = entity.getSubject();
         this.content = entity.getContent();
         this.createdDate = entity.getCreatedDate();

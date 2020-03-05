@@ -48,6 +48,7 @@ var main = {
         var data = {
             subject : $('#subject').val(),
             content : $('#summernote').val(),
+            userId : $('#userId').val(),
             bookId : $('#bookId').val()
         };
         console.log(JSON.stringify(data));

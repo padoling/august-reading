@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.padoling.portfolio.august.domain.book.BookRepository;
 import com.padoling.portfolio.august.domain.posts.Posts;
 import com.padoling.portfolio.august.domain.posts.PostsRepository;
+import com.padoling.portfolio.august.domain.user.Role;
+import com.padoling.portfolio.august.domain.user.User;
+import com.padoling.portfolio.august.domain.user.UserRepository;
 import com.padoling.portfolio.august.web.dto.book.BookSaveRequestDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsSaveRequestDto;
 import org.junit.After;
@@ -42,6 +45,9 @@ public class PostsApiControllerTest {
     private BookRepository bookRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private WebApplicationContext context;
 
     @Autowired
@@ -61,6 +67,7 @@ public class PostsApiControllerTest {
     public void tearDown() {
         postsRepository.deleteAll();
         bookRepository.deleteAll();
+        userRepository.deleteAll();
     }
 
     @Test
@@ -82,12 +89,20 @@ public class PostsApiControllerTest {
         String bookContentAsString = bookResult.getResponse().getContentAsString();
         Long bookId = objectMapper.readValue(bookContentAsString, Long.class);
 
+        userRepository.save(User.builder()
+                .name("name")
+                .email("email")
+                .role(Role.USER)
+                .build());
+        Long userId = userRepository.findAll().get(0).getId();
+
         String subject = "test subject";
         String content = "test content";
         PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
                 .subject(subject)
                 .content(content)
                 .bookId(bookId)
+                .userId(userId)
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts";
@@ -107,6 +122,7 @@ public class PostsApiControllerTest {
         assertThat(posts.getSubject()).isEqualTo(subject);
         assertThat(posts.getContent()).isEqualTo(content);
         assertThat(posts.getBook().getId()).isEqualTo(bookId);
+        assertThat(posts.getUser().getId()).isEqualTo(userId);
         assertThat(posts.getViewCount()).isEqualTo(0);
     }
 }

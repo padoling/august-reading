@@ -11,6 +11,7 @@ public class PostsListResponseDto {
     private Long id;
     private String subject;
     private LocalDateTime createdDate;
+    private String author;
     private String bookTitle;
     private String bookImage;
     private String bookAuthor;
@@ -19,6 +20,7 @@ public class PostsListResponseDto {
         this.id = entity.getId();
         this.subject = entity.getSubject();
         this.createdDate = entity.getCreatedDate();
+        this.author = entity.getUser().getName();
         this.bookTitle = entity.getBook().getTitle();
         this.bookImage = entity.getBook().getImage();
         this.bookAuthor = entity.getBook().getAuthor();

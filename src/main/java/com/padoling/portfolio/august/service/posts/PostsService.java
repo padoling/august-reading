@@ -4,6 +4,8 @@ import com.padoling.portfolio.august.domain.book.Book;
 import com.padoling.portfolio.august.domain.book.BookRepository;
 import com.padoling.portfolio.august.domain.posts.Posts;
 import com.padoling.portfolio.august.domain.posts.PostsRepository;
+import com.padoling.portfolio.august.domain.user.User;
+import com.padoling.portfolio.august.domain.user.UserRepository;
 import com.padoling.portfolio.august.web.dto.posts.PostsListResponseDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsResponseDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsSaveRequestDto;
@@ -19,15 +21,19 @@ import java.util.stream.Collectors;
 public class PostsService {
 
     private final PostsRepository postsRepository;
+    private final UserRepository userRepository;
     private final BookRepository bookRepository;
 
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
+        User user = userRepository.findById(requestDto.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + requestDto.getUserId()));
         Book book = bookRepository.findById(requestDto.getBookId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 도서가 없습니다. id=" + requestDto.getBookId()));
         return postsRepository.save(Posts.builder()
                 .subject(requestDto.getSubject())
                 .content(requestDto.getContent())
+                .user(user)
                 .book(book)
                 .build()).getId();
     }

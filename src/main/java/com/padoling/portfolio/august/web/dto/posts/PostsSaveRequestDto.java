@@ -10,5 +10,6 @@ import lombok.*;
 public class PostsSaveRequestDto {
     private String subject;
     private String content;
+    private Long userId;
     private Long bookId;
 }

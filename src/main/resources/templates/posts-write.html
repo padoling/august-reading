@@ -35,6 +35,7 @@
                     <h3>리뷰 작성</h3>
                     <div class="form-group">
                         <input type="text" class="form-control" id="subject" name="subject" placeholder="제목" required>
+                        <input type="hidden" id="userId" name="userId" th:value="${userId}">
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" id="summernote" name="content" maxlength="140" rows="7"></textarea>

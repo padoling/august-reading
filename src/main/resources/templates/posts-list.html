@@ -15,6 +15,7 @@
                         <tr>
                             <th>번호</th>
                             <th>제목</th>
+                            <th>작성자</th>
                             <th>작성일</th>
                             <th>책 정보</th>
                         </tr>
@@ -23,6 +24,7 @@
                         <tr>
                             <td th:text="${post.id}"></td>
                             <td><a th:href="'/posts/'+ ${post.id}" th:text="${post.subject}"></a></td>
+                            <td th:text="${post.author}"></td>
                             <td th:text="${post.createdDate}"></td>
                             <td>
                                 <img class="img-thumbnail" th:src="${post.bookImage}" width="82" height="124" alt="...">

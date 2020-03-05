@@ -32,6 +32,7 @@
                 <div class="posts-container my-5">
                     <div class="post">
                         <h1 th:text="${post.subject}"></h1>
+                        <span class="post-author" th:text="'작성자 : ' + ${author}"></span>
                         <span class="post-date" th:text="${post.createdDate}"></span>
                         <p th:utext="${post.content}"></p>
                     </div>

@@ -58,6 +58,7 @@ public class IndexController {
         }
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("book", bookService.findById(dto.getBookId()));
+        model.addAttribute("author", dto.getAuthor());
         model.addAttribute("post", dto);
         return "posts-detail";
     }
@@ -65,6 +66,7 @@ public class IndexController {
     @GetMapping("/posts/write")
     public String postsWrite(Model model, @LoginUser SessionUser user, @RequestParam Long bookId) {
         if(user != null) {
+            model.addAttribute("userId", user.getId());
             model.addAttribute("userName", user.getName());
         }
         model.addAttribute("book", bookService.findById(bookId));
