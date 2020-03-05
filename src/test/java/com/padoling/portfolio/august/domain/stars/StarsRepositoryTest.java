@@ -2,6 +2,7 @@ package com.padoling.portfolio.august.domain.stars;
 
 import com.padoling.portfolio.august.domain.book.Book;
 import com.padoling.portfolio.august.domain.book.BookRepository;
+import com.padoling.portfolio.august.domain.user.Role;
 import com.padoling.portfolio.august.domain.user.User;
 import com.padoling.portfolio.august.domain.user.UserRepository;
 import org.junit.After;
@@ -36,6 +37,7 @@ public class StarsRepositoryTest {
                 .email("test email")
                 .picture("test picture")
                 .nickname("test nickname")
+                .role(Role.USER)
                 .build());
 
         bookRepository.save(Book.builder()

@@ -1,141 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.padoling.portfolio.august.service.files.FilesServiceTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-03-01T11:36:37" hostname="Serim" time="2.659">
+<testsuite name="com.padoling.portfolio.august.service.files.FilesServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-03-05T07:16:41" hostname="Serim" time="0.313">
   <properties/>
-  <testcase name="testLoadResource" classname="com.padoling.portfolio.august.service.files.FilesServiceTest" time="2.659">
-    <failure message="org.junit.ComparisonFailure: expected:&lt;[&quot;test data&quot;]&gt; but was:&lt;[116]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[&quot;test data&quot;]&gt; but was:&lt;[116]&gt;
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at com.padoling.portfolio.august.service.files.FilesServiceTest.testLoadResource(FilesServiceTest.java:89)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:74)
-	at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:84)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
-	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:106)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
-	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:117)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:155)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:137)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.lang.Thread.run(Thread.java:748)
-</failure>
-  </testcase>
-  <system-out><![CDATA[20:35:46.080 [Test worker] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.padoling.portfolio.august.service.files.FilesServiceTest]
-20:35:46.118 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-20:35:46.149 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-20:35:46.208 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.padoling.portfolio.august.service.files.FilesServiceTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
-20:35:46.244 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.padoling.portfolio.august.service.files.FilesServiceTest], using SpringBootContextLoader
-20:35:46.244 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.padoling.portfolio.august.service.files.FilesServiceTest]: class path resource [com/padoling/portfolio/august/service/files/FilesServiceTest-context.xml] does not exist
-20:35:46.244 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.padoling.portfolio.august.service.files.FilesServiceTest]: class path resource [com/padoling/portfolio/august/service/files/FilesServiceTestContext.groovy] does not exist
-20:35:46.244 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.padoling.portfolio.august.service.files.FilesServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-20:35:46.244 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.padoling.portfolio.august.service.files.FilesServiceTest]: FilesServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-20:35:47.513 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.padoling.portfolio.august.service.files.FilesServiceTest]
-20:35:49.298 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\workspace\springboot_workspace\august-reading\build\classes\java\main\com\padoling\portfolio\august\Application.class]
-20:35:49.314 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.padoling.portfolio.august.Application for test class com.padoling.portfolio.august.service.files.FilesServiceTest
-20:35:49.875 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.padoling.portfolio.august.service.files.FilesServiceTest]: using defaults.
-20:35:49.875 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-20:35:50.016 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1002c62c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@698dc802, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6e2a9ba, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6a42f509, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6cf76dcb, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6bbd658f, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7881be3b, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@516f69f, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@52d84ac3, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@52c9dc0a, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@274cc00e, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@15dc7876]
-20:35:50.031 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.padoling.portfolio.august.service.files.FilesServiceTest]
-20:35:50.031 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.padoling.portfolio.august.service.files.FilesServiceTest]
-20:35:50.047 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.padoling.portfolio.august.service.files.FilesServiceTest]
-20:35:50.047 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.padoling.portfolio.august.service.files.FilesServiceTest]
-20:35:50.047 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.padoling.portfolio.august.service.files.FilesServiceTest]
-20:35:50.047 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.padoling.portfolio.august.service.files.FilesServiceTest]
-20:35:50.063 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@361fcbd7 testClass = FilesServiceTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@60df1bad testClass = FilesServiceTest, locations = '{}', classes = '{class com.padoling.portfolio.august.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@6654c26a, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@55627178, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1bd2ca5a, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2179fbca], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
-20:35:50.063 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.padoling.portfolio.august.service.files.FilesServiceTest]
-20:35:50.078 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.padoling.portfolio.august.service.files.FilesServiceTest]
-20:35:50.203 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.1.7.RELEASE)
-
-2020-03-01 20:35:52.304  INFO 15316 --- [    Test worker] c.p.p.a.service.files.FilesServiceTest   : Starting FilesServiceTest on Serim with PID 15316 (started by smilee in C:\workspace\springboot_workspace\august-reading)
-2020-03-01 20:35:52.308  INFO 15316 --- [    Test worker] c.p.p.a.service.files.FilesServiceTest   : The following profiles are active: naverapi
-2020-03-01 20:36:02.066  INFO 15316 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-03-01 20:36:02.629  INFO 15316 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 532ms. Found 5 repository interfaces.
-2020-03-01 20:36:05.154  INFO 15316 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$56d6b0de] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-01 20:36:06.702  INFO 15316 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-03-01 20:36:07.852  INFO 15316 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-03-01 20:36:10.831  INFO 15316 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
-	name: default
-	...]
-2020-03-01 20:36:11.913  INFO 15316 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.10.Final}
-2020-03-01 20:36:11.924  INFO 15316 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
-2020-03-01 20:36:15.095  INFO 15316 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
-2020-03-01 20:36:19.321  INFO 15316 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-Hibernate: drop table book if exists
-Hibernate: drop table files if exists
-Hibernate: drop table posts if exists
-Hibernate: drop table stars if exists
-Hibernate: drop table user if exists
-Hibernate: create table book (book_id bigint generated by default as identity, created_date timestamp, modified_date timestamp, author varchar(255), description varchar(255), image varchar(255), isbn varchar(255), link varchar(255), pubdate varchar(255), publisher varchar(255), title varchar(255), primary key (book_id))
-Hibernate: create table files (file_id bigint generated by default as identity, created_date timestamp, modified_date timestamp, content_type varchar(255), file_path varchar(255), original_name varchar(255), saved_name varchar(255), size bigint, primary key (file_id))
-Hibernate: create table posts (posts_id bigint generated by default as identity, created_date timestamp, modified_date timestamp, content TEXT not null, subject varchar(500) not null, view_count bigint default 0, book_book_id bigint, user_id bigint, primary key (posts_id))
-Hibernate: create table stars (stars_id bigint generated by default as identity, created_date timestamp, modified_date timestamp, score integer, book_id bigint, user_id bigint, primary key (stars_id))
-Hibernate: create table user (user_id bigint generated by default as identity, created_date timestamp, modified_date timestamp, email varchar(255) not null, name varchar(255) not null, nickname varchar(255), picture varchar(255), primary key (user_id))
-Hibernate: alter table posts add constraint FKa5bj7iv3uo0xiibr0tc0eikpa foreign key (book_book_id) references book
-Hibernate: alter table posts add constraint FKam8ar6luvp8afhfu20gfsydo9 foreign key (user_id) references user
-Hibernate: alter table stars add constraint FKmx4dcd8e4ojdglklux0ki0xdj foreign key (book_id) references book
-Hibernate: alter table stars add constraint FK9kab1c41jts1guhlgxi5oeclt foreign key (user_id) references user
-2020-03-01 20:36:24.351  INFO 15316 --- [    Test worker] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@15e21556'
-2020-03-01 20:36:24.366  INFO 15316 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-01 20:36:31.881  INFO 15316 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-01 20:36:32.104  WARN 15316 --- [    Test worker] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-03-01 20:36:32.626  INFO 15316 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2020-03-01 20:36:37.023  INFO 15316 --- [    Test worker] c.p.p.a.service.files.FilesServiceTest   : Started FilesServiceTest in 46.756 seconds (JVM running for 53.251)
+  <testcase name="testFilesSave" classname="com.padoling.portfolio.august.service.files.FilesServiceTest" time="0.191"/>
+  <testcase name="testLoadResource" classname="com.padoling.portfolio.august.service.files.FilesServiceTest" time="0.116"/>
+  <system-out><![CDATA[2020-03-05 16:16:40.980  INFO 22612 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.padoling.portfolio.august.service.files.FilesServiceTest], using SpringBootContextLoader
+2020-03-05 16:16:40.995  INFO 22612 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.padoling.portfolio.august.service.files.FilesServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2020-03-05 16:16:41.000  INFO 22612 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.padoling.portfolio.august.service.files.FilesServiceTest]: FilesServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2020-03-05 16:16:41.065  INFO 22612 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.padoling.portfolio.august.Application for test class com.padoling.portfolio.august.service.files.FilesServiceTest
+2020-03-05 16:16:41.094  INFO 22612 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2020-03-05 16:16:41.156  INFO 22612 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@23a2f0a6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3775a6e1, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@25924db4, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6ba44438, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5f37be2a, org.springframework.test.context.transaction.TransactionalTestExecutionListener@45ef5983, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@72275367, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@3b6b4c9f, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@594f6336, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@66d31add, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2ea7c10b, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@4fc96ff4, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6d3df3e8, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@13c60960]
+Hibernate: insert into files (file_id, created_date, modified_date, content_type, file_path, original_name, saved_name, size) values (null, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select files0_.file_id as file_id1_1_, files0_.created_date as created_2_1_, files0_.modified_date as modified3_1_, files0_.content_type as content_4_1_, files0_.file_path as file_pat5_1_, files0_.original_name as original6_1_, files0_.saved_name as saved_na7_1_, files0_.size as size8_1_ from files files0_
+Hibernate: select files0_.file_id as file_id1_1_, files0_.created_date as created_2_1_, files0_.modified_date as modified3_1_, files0_.content_type as content_4_1_, files0_.file_path as file_pat5_1_, files0_.original_name as original6_1_, files0_.saved_name as saved_na7_1_, files0_.size as size8_1_ from files files0_
+Hibernate: delete from files where file_id=?
 Hibernate: insert into files (file_id, created_date, modified_date, content_type, file_path, original_name, saved_name, size) values (null, ?, ?, ?, ?, ?, ?, ?)
 Hibernate: select files0_.file_id as file_id1_1_0_, files0_.created_date as created_2_1_0_, files0_.modified_date as modified3_1_0_, files0_.content_type as content_4_1_0_, files0_.file_path as file_pat5_1_0_, files0_.original_name as original6_1_0_, files0_.saved_name as saved_na7_1_0_, files0_.size as size8_1_0_ from files files0_ where files0_.file_id=?
-2020-03-01 20:36:39.252  INFO 15316 --- [    Test worker] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
 Hibernate: select files0_.file_id as file_id1_1_, files0_.created_date as created_2_1_, files0_.modified_date as modified3_1_, files0_.content_type as content_4_1_, files0_.file_path as file_pat5_1_, files0_.original_name as original6_1_, files0_.saved_name as saved_na7_1_, files0_.size as size8_1_ from files files0_
 Hibernate: delete from files where file_id=?
 ]]></system-out>

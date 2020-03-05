@@ -16,12 +16,10 @@ public class PostsRepositoryImpl implements PostsRepositoryCustom{
     @Override
     public Long countByBookId(Book book) {
         return queryFactory
-                .select(posts.count())
                 .from(posts)
                 .where(posts.book.eq(book))
                 .groupBy(posts.book)
-                .fetch()
-                .get(0);
+                .fetchCount();
     }
 
     @Override
