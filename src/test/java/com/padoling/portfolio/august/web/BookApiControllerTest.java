@@ -3,6 +3,8 @@ package com.padoling.portfolio.august.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.padoling.portfolio.august.domain.book.Book;
 import com.padoling.portfolio.august.domain.book.BookRepository;
+import com.padoling.portfolio.august.web.dto.book.BookInfoRequestDto;
+import com.padoling.portfolio.august.web.dto.book.BookInfoResponseDto;
 import com.padoling.portfolio.august.web.dto.book.BookResponseDto;
 import com.padoling.portfolio.august.web.dto.book.BookSaveRequestDto;
 import org.junit.After;
@@ -11,7 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -24,6 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,9 +35,6 @@ public class BookApiControllerTest {
 
     @LocalServerPort
     private int port;
-
-    @Autowired
-    private TestRestTemplate restTemplate;
 
     @Autowired
     private BookRepository bookRepository;
@@ -93,5 +92,55 @@ public class BookApiControllerTest {
         BookResponseDto responseDto = new BookResponseDto(book);
         assertThat(responseDto.getTitle()).isEqualTo(title);
         assertThat(responseDto.getIsbn()).isEqualTo(isbn);
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    public void testFindBookInfo() throws Exception {
+        //given
+        String title = "test title";
+        String isbn = "test isbn";
+        String pubdate = "test pubdate";
+        bookRepository.save(Book.builder()
+                .title(title)
+                .isbn(isbn)
+                .pubdate(pubdate)
+                .build());
+
+        BookInfoRequestDto notSavedRequestDto = BookInfoRequestDto.builder()
+                .isbn("isbn")
+                .pubdate("pubdate")
+                .build();
+
+        BookInfoRequestDto savedRequestDto = BookInfoRequestDto.builder()
+                .isbn(isbn)
+                .pubdate(pubdate)
+                .build();
+
+        String notSavedUrl = "http://localhost:" + port + "/api/v1/book/info?isbn=isbn&pubdate=pubdate";
+        String savedUrl = "http://localhost:" + port + "/api/v1/book/info?isbn=" + isbn + "&pubdate=" + pubdate;
+
+        //when
+        MvcResult notSavedResult = mvc.perform(get(notSavedUrl))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        MvcResult savedResult = mvc.perform(get(savedUrl))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        //then
+        String notSavedContent = notSavedResult.getResponse().getContentAsString();
+        BookInfoResponseDto notSavedResponseDto = objectMapper.readValue(notSavedContent, BookInfoResponseDto.class);
+        assertThat(notSavedResponseDto).isNotNull();
+        assertThat(notSavedResponseDto.getBookId()).isNull();
+        assertThat(notSavedResponseDto.getPostsCount()).isEqualTo(0);
+
+        String savedContent = savedResult.getResponse().getContentAsString();
+        BookInfoResponseDto savedResponseDto = objectMapper.readValue(savedContent, BookInfoResponseDto.class);
+        Long savedBookId = bookRepository.findAll().get(0).getId();
+        assertThat(savedResponseDto).isNotNull();
+        assertThat(savedResponseDto.getBookId()).isEqualTo(savedBookId);
+        assertThat(savedResponseDto.getPostsCount()).isEqualTo(0);
     }
 }
