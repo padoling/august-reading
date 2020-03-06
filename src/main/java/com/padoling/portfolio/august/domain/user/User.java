@@ -25,6 +25,7 @@ public class User extends BaseTimeEntity {
 
     private String picture;
 
+    @Column(unique = true)
     private String nickname;
 
     @Enumerated(EnumType.STRING)
@@ -43,6 +44,12 @@ public class User extends BaseTimeEntity {
     public User update(String name, String picture) {
         this.name = name;
         this.picture = picture;
+
+        return this;
+    }
+
+    public User updateNickname(String nickname) {
+        this.nickname = nickname;
 
         return this;
     }

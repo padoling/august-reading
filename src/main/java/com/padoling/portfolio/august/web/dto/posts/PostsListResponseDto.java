@@ -20,7 +20,7 @@ public class PostsListResponseDto {
         this.id = entity.getId();
         this.subject = entity.getSubject();
         this.createdDate = entity.getCreatedDate();
-        this.author = entity.getUser().getName();
+        this.author = entity.getUser().getNickname();
         this.bookTitle = entity.getBook().getTitle();
         this.bookImage = entity.getBook().getImage();
         this.bookAuthor = entity.getBook().getAuthor();

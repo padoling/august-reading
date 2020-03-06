@@ -25,15 +25,29 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
         if(user != null) {
-            model.addAttribute("userName", user.getName());
+            if(user.getNickname() == null) {
+                return "redirect:/login/nickname";
+            }
+            model.addAttribute("userNickname", user.getNickname());
         }
         return "index";
+    }
+
+    @GetMapping("/login/nickname")
+    public String loginNickname(Model model, @LoginUser SessionUser user) {
+        if(user != null) {
+            model.addAttribute("userId", user.getId());
+        }
+        return "login-nickname";
     }
 
     @GetMapping("/book/list")
     public String bookList(Model model, @LoginUser SessionUser user, NaverSearchRequestDto requestDto) {
         if(user != null) {
-            model.addAttribute("userName", user.getName());
+            if(user.getNickname() == null) {
+                return "redirect:/login/nickname";
+            }
+            model.addAttribute("userNickname", user.getNickname());
         }
         if(requestDto.getQuery() == null) {
             return "book-list";
@@ -45,7 +59,10 @@ public class IndexController {
     @GetMapping("/posts")
     public String postsList(Model model, @LoginUser SessionUser user) {
         if(user != null) {
-            model.addAttribute("userName", user.getName());
+            if(user.getNickname() == null) {
+                return "redirect:/login/nickname";
+            }
+            model.addAttribute("userNickname", user.getNickname());
         }
         model.addAttribute("posts", postsService.findAllDesc());
         return "posts-list";
@@ -54,7 +71,10 @@ public class IndexController {
     @GetMapping("/posts/{id}")
     public String postsDetail(Model model, @LoginUser SessionUser user, @PathVariable Long id) {
         if(user != null) {
-            model.addAttribute("userName", user.getName());
+            if(user.getNickname() == null) {
+                return "redirect:/login/nickname";
+            }
+            model.addAttribute("userNickname", user.getNickname());
         }
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("book", bookService.findById(dto.getBookId()));
@@ -66,8 +86,11 @@ public class IndexController {
     @GetMapping("/posts/write")
     public String postsWrite(Model model, @LoginUser SessionUser user, @RequestParam Long bookId) {
         if(user != null) {
+            if(user.getNickname() == null) {
+                return "redirect:/login/nickname";
+            }
             model.addAttribute("userId", user.getId());
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("userNickname", user.getNickname());
         }
         model.addAttribute("book", bookService.findById(bookId));
         return "posts-write";
