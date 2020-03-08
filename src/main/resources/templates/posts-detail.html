@@ -34,7 +34,7 @@
                         <h1 th:text="${post.subject}"></h1>
                         <span class="post-author" th:text="'작성자 : ' + ${author}"></span>
                         <span class="post-date" th:text="${post.createdDate}"></span>
-                        <span class="post-viewCount" th:text="${post.viewCount}"></span>
+                        <span class="post-viewCount" th:text="'조회수 : ' + ${post.viewCount}"></span>
                         <p th:utext="${post.content}"></p>
                         <input type="hidden" id="postId" name="postId" th:value="${post.id}">
                     </div>

@@ -76,10 +76,13 @@ public class IndexController {
             }
             model.addAttribute("userNickname", user.getNickname());
         }
-        PostsResponseDto dto = postsService.findById(id);
-        model.addAttribute("book", bookService.findById(dto.getBookId()));
-        model.addAttribute("author", dto.getAuthor());
-        model.addAttribute("post", dto);
+        PostsResponseDto post = postsService.findById(id);
+        model.addAttribute("book", bookService.findById(post.getBookId()));
+        model.addAttribute("author", post.getAuthor());
+        model.addAttribute("post", post);
+        if(user != null && !user.getNickname().equals(post.getAuthor())) {
+            postsService.updateViewCount(id);
+        }
         return "posts-detail";
     }
 

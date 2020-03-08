@@ -12,6 +12,7 @@ public class PostsListResponseDto {
     private String subject;
     private LocalDateTime createdDate;
     private String author;
+    private Long viewCount;
     private String bookTitle;
     private String bookImage;
     private String bookAuthor;
@@ -21,6 +22,7 @@ public class PostsListResponseDto {
         this.subject = entity.getSubject();
         this.createdDate = entity.getCreatedDate();
         this.author = entity.getUser().getNickname();
+        this.viewCount = entity.getViewCount();
         this.bookTitle = entity.getBook().getTitle();
         this.bookImage = entity.getBook().getImage();
         this.bookAuthor = entity.getBook().getAuthor();
