@@ -48,9 +48,12 @@ public class Posts extends BaseTimeEntity {
         this.viewCount = viewCount;
     }
 
-    public void update(String subject, String content, Long viewCount) {
+    public void update(String subject, String content) {
         this.subject = subject;
         this.content = content;
+    }
+
+    public void updateViewCount(Long viewCount) {
         this.viewCount = viewCount;
     }
 }

@@ -13,6 +13,7 @@ public class PostsResponseDto {
     private String author;
     private String subject;
     private String content;
+    private Long viewCount;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
@@ -22,6 +23,7 @@ public class PostsResponseDto {
         this.author = entity.getUser().getNickname();
         this.subject = entity.getSubject();
         this.content = entity.getContent();
+        this.viewCount = entity.getViewCount();
         this.createdDate = entity.getCreatedDate();
         this.modifiedDate = entity.getModifiedDate();
     }

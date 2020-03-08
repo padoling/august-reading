@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/header"></th:block>
+    <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+</head>
+<body>
+<th:block th:include="fragments/nav-bar"></th:block>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-lg-auto">
+            <!-- 책 정보 -->
+            <div class="card mt-5" style="width: 750px;">
+                <div class="row no-gutters">
+                    <div class="col-auto">
+                        <img class="card-img img-thumbnail book-image" th:src="${book.image}" alt="...">
+                    </div>
+                    <div class="col">
+                        <div class="card-body py-1">
+                            <h6 class="card-title mb-0 book-title" th:utext="${book.title}"></h6>
+                            <p class="card-text mb-0">
+                                <span class="book-author" th:text="${book.author}"></span> |
+                                <span class="book-publisher" th:text="${book.publisher}"></span> |
+                                <span class="book-pubdate" th:text="${book.pubdate}"></span>
+                            </p>
+                            <input type="hidden" id="bookId" name="bookId" th:value="${book.id}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 리뷰 작성란 -->
+            <form>
+                <h3>리뷰 수정</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="subject" name="subject" th:value="${post.subject}" required>
+                    <input type="hidden" id="postId" name="postId" th:value="${post.id}">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="summernote" name="content" th:utext="${post.content}" maxlength="140" rows="7"></textarea>
+                </div>
+                <button type="button" id="btn-update" class="btn btn-primary">수정 완료</button>
+                <a type="button" class="btn btn-secondary" th:href="'/posts/' + ${post.id}">취소</a>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+<th:block th:include="fragments/footer"></th:block>
+<script src="/js/app/posts-update.js"></script>
+<script src="/js/summernote/summernote-lite.js"></script>
+<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+</body>
+</html>

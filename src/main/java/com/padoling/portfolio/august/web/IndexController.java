@@ -95,4 +95,18 @@ public class IndexController {
         model.addAttribute("book", bookService.findById(bookId));
         return "posts-write";
     }
+
+    @GetMapping("/posts/update/{id}")
+    public String postsUpdate(Model model, @LoginUser SessionUser user, @PathVariable Long id) {
+        if(user != null) {
+            if(user.getNickname() == null) {
+                return "redirect:/login/nickname";
+            }
+            model.addAttribute("userNickname", user.getNickname());
+        }
+        PostsResponseDto postsResponseDto = postsService.findById(id);
+        model.addAttribute("post", postsResponseDto);
+        model.addAttribute("book", bookService.findById(postsResponseDto.getBookId()));
+        return "posts-update";
+    }
 }

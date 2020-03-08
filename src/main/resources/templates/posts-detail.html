@@ -34,10 +34,12 @@
                         <h1 th:text="${post.subject}"></h1>
                         <span class="post-author" th:text="'작성자 : ' + ${author}"></span>
                         <span class="post-date" th:text="${post.createdDate}"></span>
+                        <span class="post-viewCount" th:text="${post.viewCount}"></span>
                         <p th:utext="${post.content}"></p>
                     </div>
                 </div>
                 <a type="button" href="/posts" class="btn btn-primary">리뷰 목록</a>
+                <a th:if="${userNickname == post.author}" type="button" class="btn btn-success" th:href="'/posts/update/' + ${post.id}">수정</a>
             </div>
             <div class="col"></div>
         </div>

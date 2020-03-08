@@ -8,6 +8,7 @@ import com.padoling.portfolio.august.domain.user.Role;
 import com.padoling.portfolio.august.domain.user.User;
 import com.padoling.portfolio.august.domain.user.UserRepository;
 import com.padoling.portfolio.august.web.dto.posts.PostsSaveRequestDto;
+import com.padoling.portfolio.august.web.dto.posts.PostsUpdateRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -78,5 +79,49 @@ public class PostsServiceTest {
         assertThat(posts.getUser().getId()).isEqualTo(userId);
         assertThat(posts.getBook().getId()).isEqualTo(bookId);
         assertThat(posts.getViewCount()).isEqualTo(0);
+    }
+
+    @Test
+    public void testPostsUpdate() {
+        //given
+        bookRepository.save(Book.builder()
+                .isbn("isbn")
+                .pubdate("pubdate")
+                .build());
+        Book book = bookRepository.findAll().get(0);
+
+        userRepository.save(User.builder()
+                .name("name")
+                .email("email")
+                .role(Role.USER)
+                .build());
+        User user = userRepository.findAll().get(0);
+
+        postsRepository.save(Posts.builder()
+                .subject("subject")
+                .content("content")
+                .book(book)
+                .user(user)
+                .build());
+        Long postId = postsRepository.findAll().get(0).getId();
+
+        String updateSubject = "update subject";
+        String updateContent = "update content";
+
+        PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
+                .subject(updateSubject)
+                .content(updateContent)
+                .build();
+
+        //when
+        Long updatedId = postsService.update(postId, requestDto);
+
+        //then
+        Posts updatedPost = postsRepository.findById(postId)
+                .orElse(null);
+        assertThat(updatedPost).isNotNull();
+        assertThat(updatedPost.getId()).isEqualTo(updatedId);
+        assertThat(updatedPost.getSubject()).isEqualTo(updateSubject);
+        assertThat(updatedPost.getContent()).isEqualTo(updateContent);
     }
 }

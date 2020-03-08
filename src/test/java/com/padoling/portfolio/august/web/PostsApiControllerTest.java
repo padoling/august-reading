@@ -1,6 +1,7 @@
 package com.padoling.portfolio.august.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.padoling.portfolio.august.domain.book.Book;
 import com.padoling.portfolio.august.domain.book.BookRepository;
 import com.padoling.portfolio.august.domain.posts.Posts;
 import com.padoling.portfolio.august.domain.posts.PostsRepository;
@@ -9,6 +10,7 @@ import com.padoling.portfolio.august.domain.user.User;
 import com.padoling.portfolio.august.domain.user.UserRepository;
 import com.padoling.portfolio.august.web.dto.book.BookSaveRequestDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsSaveRequestDto;
+import com.padoling.portfolio.august.web.dto.posts.PostsUpdateRequestDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -124,5 +127,57 @@ public class PostsApiControllerTest {
         assertThat(posts.getBook().getId()).isEqualTo(bookId);
         assertThat(posts.getUser().getId()).isEqualTo(userId);
         assertThat(posts.getViewCount()).isEqualTo(0);
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    public void testUpdatePosts() throws Exception {
+        //given
+        bookRepository.save(Book.builder()
+                .isbn("isbn")
+                .pubdate("pubdate")
+                .build());
+        Book book = bookRepository.findAll().get(0);
+
+        userRepository.save(User.builder()
+                .name("name")
+                .email("email")
+                .role(Role.USER)
+                .build());
+        User user = userRepository.findAll().get(0);
+
+        postsRepository.save(Posts.builder()
+                .subject("subject")
+                .content("content")
+                .book(book)
+                .user(user)
+                .build());
+        Long postId = postsRepository.findAll().get(0).getId();
+
+        String updateSubject = "update subject";
+        String updateContent = "update content";
+
+        PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
+                .subject(updateSubject)
+                .content(updateContent)
+                .build();
+
+        String url = "http://localhost:" + port + "/api/v1/posts/" + postId;
+
+        //when
+        MvcResult result = mvc.perform(put(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        //then
+        String contentAsString = result.getResponse().getContentAsString();
+        Posts posts = postsRepository.findById(objectMapper.readValue(contentAsString, Long.class))
+                .orElse(null);
+        assertThat(posts).isNotNull();
+        assertThat(posts.getId()).isEqualTo(postId);
+        assertThat(posts.getSubject()).isEqualTo(updateSubject);
+        assertThat(posts.getContent()).isEqualTo(updateContent);
     }
 }
