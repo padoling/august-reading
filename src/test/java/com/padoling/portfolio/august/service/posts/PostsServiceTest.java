@@ -10,6 +10,7 @@ import com.padoling.portfolio.august.domain.user.UserRepository;
 import com.padoling.portfolio.august.web.dto.posts.PostsSaveRequestDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsUpdateRequestDto;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,20 @@ public class PostsServiceTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Before
+    public void setup() {
+        bookRepository.save(Book.builder()
+                .isbn("isbn")
+                .pubdate("pubdate")
+                .build());
+
+        userRepository.save(User.builder()
+                .name("name")
+                .email("email")
+                .role(Role.USER)
+                .build());
+    }
+
     @After
     public void cleanup() {
         postsRepository.deleteAll();
@@ -44,17 +59,7 @@ public class PostsServiceTest {
     @Test
     public void testPostsSave() {
         //given
-        bookRepository.save(Book.builder()
-                .isbn("isbn")
-                .pubdate("pubdate")
-                .build());
         Long bookId = bookRepository.findAll().get(0).getId();
-
-        userRepository.save(User.builder()
-                .name("name")
-                .email("email")
-                .role(Role.USER)
-                .build());
         Long userId = userRepository.findAll().get(0).getId();
 
         String subject = "test subject";
@@ -84,17 +89,7 @@ public class PostsServiceTest {
     @Test
     public void testPostsUpdate() {
         //given
-        bookRepository.save(Book.builder()
-                .isbn("isbn")
-                .pubdate("pubdate")
-                .build());
         Book book = bookRepository.findAll().get(0);
-
-        userRepository.save(User.builder()
-                .name("name")
-                .email("email")
-                .role(Role.USER)
-                .build());
         User user = userRepository.findAll().get(0);
 
         postsRepository.save(Posts.builder()
@@ -123,5 +118,28 @@ public class PostsServiceTest {
         assertThat(updatedPost.getId()).isEqualTo(updatedId);
         assertThat(updatedPost.getSubject()).isEqualTo(updateSubject);
         assertThat(updatedPost.getContent()).isEqualTo(updateContent);
+    }
+
+    @Test
+    public void testPostsDelete() {
+        //given
+        Book book = bookRepository.findAll().get(0);
+        User user = userRepository.findAll().get(0);
+
+        postsRepository.save(Posts.builder()
+                .subject("subject")
+                .content("content")
+                .book(book)
+                .user(user)
+                .build());
+        Long id = postsRepository.findAll().get(0).getId();
+
+        //when
+        postsService.delete(id);
+
+        //then
+        Posts posts = postsRepository.findById(id)
+                .orElse(null);
+        assertThat(posts).isNull();
     }
 }

@@ -8,7 +8,6 @@ import com.padoling.portfolio.august.domain.posts.PostsRepository;
 import com.padoling.portfolio.august.domain.user.Role;
 import com.padoling.portfolio.august.domain.user.User;
 import com.padoling.portfolio.august.domain.user.UserRepository;
-import com.padoling.portfolio.august.web.dto.book.BookSaveRequestDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsSaveRequestDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsUpdateRequestDto;
 import org.junit.After;
@@ -29,8 +28,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -64,6 +62,17 @@ public class PostsApiControllerTest {
                 .webAppContextSetup(context)
                 .apply(springSecurity())
                 .build();
+
+        bookRepository.save(Book.builder()
+                .isbn("isbn")
+                .pubdate("pubdate")
+                .build());
+
+        userRepository.save(User.builder()
+                .name("name")
+                .email("email")
+                .role(Role.USER)
+                .build());
     }
 
     @After
@@ -77,26 +86,7 @@ public class PostsApiControllerTest {
     @WithMockUser(roles = "USER")
     public void testSavePosts() throws Exception {
         //given
-        BookSaveRequestDto bookSaveRequestDto = BookSaveRequestDto.builder()
-                .title("title")
-                .author("author")
-                .build();
-
-        String bookUrl = "http://localhost:" + port + "/api/v1/book";
-
-        MvcResult bookResult = mvc.perform(post(bookUrl)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(new ObjectMapper().writeValueAsString(bookSaveRequestDto)))
-                .andExpect(status().isOk())
-                .andReturn();
-        String bookContentAsString = bookResult.getResponse().getContentAsString();
-        Long bookId = objectMapper.readValue(bookContentAsString, Long.class);
-
-        userRepository.save(User.builder()
-                .name("name")
-                .email("email")
-                .role(Role.USER)
-                .build());
+        Long bookId = bookRepository.findAll().get(0).getId();
         Long userId = userRepository.findAll().get(0).getId();
 
         String subject = "test subject";
@@ -133,17 +123,7 @@ public class PostsApiControllerTest {
     @WithMockUser(roles = "USER")
     public void testUpdatePosts() throws Exception {
         //given
-        bookRepository.save(Book.builder()
-                .isbn("isbn")
-                .pubdate("pubdate")
-                .build());
         Book book = bookRepository.findAll().get(0);
-
-        userRepository.save(User.builder()
-                .name("name")
-                .email("email")
-                .role(Role.USER)
-                .build());
         User user = userRepository.findAll().get(0);
 
         postsRepository.save(Posts.builder()
@@ -179,5 +159,32 @@ public class PostsApiControllerTest {
         assertThat(posts.getId()).isEqualTo(postId);
         assertThat(posts.getSubject()).isEqualTo(updateSubject);
         assertThat(posts.getContent()).isEqualTo(updateContent);
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    public void testDeletePosts() throws Exception {
+        //given
+        Book book = bookRepository.findAll().get(0);
+        User user = userRepository.findAll().get(0);
+
+        postsRepository.save(Posts.builder()
+                .subject("subject")
+                .content("content")
+                .book(book)
+                .user(user)
+                .build());
+        Long id = postsRepository.findAll().get(0).getId();
+
+        String url = "http://localhost:" + port + "/api/v1/posts/" + id;
+
+        //when
+        mvc.perform(delete(url))
+                .andExpect(status().isOk());
+
+        //then
+        Posts posts = postsRepository.findById(id)
+                .orElse(null);
+        assertThat(posts).isNull();
     }
 }
