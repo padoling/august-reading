@@ -8,8 +8,49 @@
     <div class="container">
         <div class="row">
             <div class="col"></div>
-            <div class="col-lg-auto py-3">
-                <h5>책 정보 어쩌고</h5>
+            <div class="col-lg-auto">
+                <!-- 책 정보 -->
+                <h1>책 정보</h1>
+                <div class="card mt-5" style="width: 750px;">
+                    <div class="row no-gutters">
+                        <div class="col-auto">
+                            <img class="card-img img-thumbnail book-image" th:src="${book.image}" alt="...">
+                        </div>
+                        <div class="col">
+                            <div class="card-body py-1">
+                                <h6 class="card-title mb-0 book-title" th:utext="${book.title}"></h6>
+                                <p class="card-text mb-0">
+                                    <span class="book-author" th:text="${book.author}"></span> |
+                                    <span class="book-publisher" th:text="${book.publisher}"></span> |
+                                    <span class="book-pubdate" th:text="${book.pubdate}"></span>
+                                </p>
+                                <input type="hidden" id="bookId" name="bookId" th:value="${book.id}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h1>리뷰 목록</h1>
+                <table class="table table-horizontal table-bordered">
+                    <thead class="thead-strong">
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                        <th>조회수</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="post:${posts}">
+                    <tr>
+                        <td th:text="${post.id}"></td>
+                        <td><a th:href="'/posts/'+ ${post.id}" th:text="${post.subject}"></a></td>
+                        <td th:text="${post.author}"></td>
+                        <td th:text="${post.createdDate}"></td>
+                        <td th:text="${post.viewCount}"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="col"></div>
         </div>

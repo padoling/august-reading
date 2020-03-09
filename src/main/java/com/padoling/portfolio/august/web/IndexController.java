@@ -6,6 +6,7 @@ import com.padoling.portfolio.august.search.dto.NaverSearchRequestDto;
 import com.padoling.portfolio.august.search.NaverSearchService;
 import com.padoling.portfolio.august.service.book.BookService;
 import com.padoling.portfolio.august.service.posts.PostsService;
+import com.padoling.portfolio.august.web.dto.book.BookResponseDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -111,5 +112,18 @@ public class IndexController {
         model.addAttribute("post", postsResponseDto);
         model.addAttribute("book", bookService.findById(postsResponseDto.getBookId()));
         return "posts-update";
+    }
+
+    @GetMapping("/book/{id}")
+    public String bookDetail (Model model, @LoginUser SessionUser user, @PathVariable Long id) {
+        if(user != null) {
+            if(user.getNickname() == null) {
+                return "redirect:/login/nickname";
+            }
+            model.addAttribute("userNickname", user.getNickname());
+        }
+        model.addAttribute("book", bookService.findById(id));
+        model.addAttribute("posts", postsService.findByBookId(id));
+        return "book-detail";
     }
 }

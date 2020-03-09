@@ -6,10 +6,7 @@ import com.padoling.portfolio.august.domain.posts.Posts;
 import com.padoling.portfolio.august.domain.posts.PostsRepository;
 import com.padoling.portfolio.august.domain.user.User;
 import com.padoling.portfolio.august.domain.user.UserRepository;
-import com.padoling.portfolio.august.web.dto.posts.PostsListResponseDto;
-import com.padoling.portfolio.august.web.dto.posts.PostsResponseDto;
-import com.padoling.portfolio.august.web.dto.posts.PostsSaveRequestDto;
-import com.padoling.portfolio.august.web.dto.posts.PostsUpdateRequestDto;
+import com.padoling.portfolio.august.web.dto.posts.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +41,14 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
         return new PostsResponseDto(entity);
+    }
+
+    public List<PostsListBookResponseDto> findByBookId(Long bookId) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 도서가 없습니다. id=" + bookId));
+        return postsRepository.findByBook(book).stream()
+                .map(PostsListBookResponseDto::new)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)

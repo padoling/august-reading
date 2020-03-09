@@ -22,7 +22,7 @@ var main = {
         }).done(function(json) {
             $review.text('리뷰 ' + json.postsCount + '개');
             if(json.postsCount > 0) {
-                $review.append('<button type="button" class="btn btn-outline-primary btn-sm">리뷰 보기</button>');
+                $review.append('<a class="btn btn-outline-primary btn-sm" href="/book/'+json.bookId+'">리뷰 보기</a>');
             }
         }).fail(function(error) {
             alert(JSON.stringify(error));

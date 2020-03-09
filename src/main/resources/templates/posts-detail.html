@@ -17,7 +17,8 @@
                         </div>
                         <div class="col">
                             <div class="card-body py-1">
-                                <h6 class="card-title mb-0 book-title" th:utext="${book.title}"></h6>
+                                <a class="card-title mb-0 book-title" th:utext="${book.title}"
+                                th:href="'/book/' + ${book.id}"></a>
                                 <p class="card-text mb-0">
                                     <span class="book-author" th:text="${book.author}"></span> |
                                     <span class="book-publisher" th:text="${book.publisher}"></span> |
