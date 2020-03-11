@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/header"></th:block>
+</head>
+<body>
+    <th:block th:include="fragments/nav-bar"></th:block>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-lg-auto py-3">
+                <h3>내 정보</h3>
+                <p th:text="${user.provider} + '에서 제공되는 정보입니다.'"></p>
+                <table class="table table-borderless">
+                    <tbody>
+                    <tr>
+                        <th scope="row">닉네임</th>
+                        <td th:text="${user.nickname}"></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nickModal">닉네임 변경</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">이름</th>
+                        <td th:text="${user.name}"></td>
+                        <td><small>다른 사용자에게 공개되지 않습니다.</small></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">이메일</th>
+                        <td th:if="${user.provider.equals('카카오')}">등록된 이메일이 없습니다.</td>
+                        <td th:unless="${user.provider.equals('카카오')}" th:text="${user.email}"></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <button class="btn btn-danger">탈퇴하기</button>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+    <!-- modal -->
+    <div class="modal fade" id="nickModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="nickModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="nickModalLabel">닉네임 변경</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" novalidate>
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                                <input type="text" class="form-control mb-2" id="nickname" name="nickname" maxlength="6" placeholder="닉네임 입력" required>
+                                <input type="hidden" id="userId" name="userId" th:value="${user.id}">
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-secondary mb-2" id="check-nick">중복 확인</button>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-auto" id="checked-msg"></div>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="btn-submit">변경</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="fragments/footer"></th:block>
+    <script src="/js/app/user-info.js"></script>
+</body>
+</html>

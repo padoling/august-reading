@@ -126,8 +126,8 @@ public class IndexController {
         return "book-detail";
     }
 
-    @GetMapping("/posts/user")
-    public String postsUser(Model model, @LoginUser SessionUser user) {
+    @GetMapping("/user/posts")
+    public String userPosts(Model model, @LoginUser SessionUser user) {
         if(user != null) {
             if(user.getNickname() == null) {
                 return "redirect:/login/nickname";
@@ -135,6 +135,18 @@ public class IndexController {
             model.addAttribute("userNickname", user.getNickname());
             model.addAttribute("posts", postsService.findByUserId(user.getId()));
         }
-        return "posts-user";
+        return "user-posts";
+    }
+
+    @GetMapping("/user")
+    public String user(Model model, @LoginUser SessionUser user) {
+        if(user != null) {
+            if(user.getNickname() == null) {
+                return "redirect:/login/nickname";
+            }
+            model.addAttribute("userNickname", user.getNickname());
+            model.addAttribute("user", user);
+        }
+        return "user-info";
     }
 }

@@ -13,6 +13,7 @@ public class SessionUser implements Serializable {
     private String email;
     private String picture;
     private String nickname;
+    private String provider;
 
     public SessionUser(User user) {
         this.id = user.getId();
@@ -20,5 +21,6 @@ public class SessionUser implements Serializable {
         this.email = user.getEmail();
         this.picture = user.getPicture();
         this.nickname = user.getNickname();
+        this.provider = user.getProviderTitle();
     }
 }

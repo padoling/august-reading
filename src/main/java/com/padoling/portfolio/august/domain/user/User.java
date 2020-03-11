@@ -29,15 +29,19 @@ public class User extends BaseTimeEntity {
     private String nickname;
 
     @Enumerated(EnumType.STRING)
+    private Provider provider;
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
     @Builder
-    public User(String name, String email, String picture, String nickname, Role role) {
+    public User(String name, String email, String picture, String nickname, Provider provider, Role role) {
         this.name = name;
         this.email = email;
         this.picture = picture;
         this.nickname = nickname;
+        this.provider = provider;
         this.role = role;
     }
 
@@ -56,5 +60,9 @@ public class User extends BaseTimeEntity {
 
     public String getRoleKey() {
         return this.role.getKey();
+    }
+
+    public String getProviderTitle() {
+        return this.provider.getTitle();
     }
 }

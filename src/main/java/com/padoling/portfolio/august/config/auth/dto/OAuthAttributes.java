@@ -1,5 +1,6 @@
 package com.padoling.portfolio.august.config.auth.dto;
 
+import com.padoling.portfolio.august.domain.user.Provider;
 import com.padoling.portfolio.august.domain.user.Role;
 import com.padoling.portfolio.august.domain.user.User;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ public class OAuthAttributes {
     private String name;
     private String email;
     private String picture;
+    private Provider provider;
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName,
                                      Map<String, Object> attributes) {
@@ -38,6 +40,7 @@ public class OAuthAttributes {
                 .name((String)response.get("name"))
                 .email((String)response.get("email"))
                 .picture((String)response.get("profileImage"))
+                .provider(Provider.NAVER)
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
@@ -51,6 +54,7 @@ public class OAuthAttributes {
                 .name((String)properties.get("nickname"))
                 .email("@kakao-" + attributes.get("id"))
                 .picture((String)properties.get("thumbnail_image"))
+                .provider(Provider.KAKAO)
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
@@ -62,6 +66,7 @@ public class OAuthAttributes {
                 .name((String)attributes.get("name"))
                 .email((String)attributes.get("email"))
                 .picture((String)attributes.get("picture"))
+                .provider(Provider.GOOGLE)
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
@@ -72,6 +77,7 @@ public class OAuthAttributes {
                 .name(name)
                 .email(email)
                 .picture(picture)
+                .provider(provider)
                 .role(Role.USER)
                 .build();
     }

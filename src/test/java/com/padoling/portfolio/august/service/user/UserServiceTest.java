@@ -1,5 +1,6 @@
 package com.padoling.portfolio.august.service.user;
 
+import com.padoling.portfolio.august.domain.user.Provider;
 import com.padoling.portfolio.august.domain.user.Role;
 import com.padoling.portfolio.august.domain.user.User;
 import com.padoling.portfolio.august.domain.user.UserRepository;
