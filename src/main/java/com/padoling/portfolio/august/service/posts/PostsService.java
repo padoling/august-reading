@@ -51,6 +51,14 @@ public class PostsService {
                 .collect(Collectors.toList());
     }
 
+    public List<PostsListUserResponseDto> findByUserId(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + userId));
+        return postsRepository.findByUser(user).stream()
+                .map(PostsListUserResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc() {
         return postsRepository.findAllDesc().stream()

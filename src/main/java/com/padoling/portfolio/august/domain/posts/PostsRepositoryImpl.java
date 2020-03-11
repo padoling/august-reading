@@ -16,9 +16,9 @@ public class PostsRepositoryImpl implements PostsRepositoryCustom{
     @Override
     public Long countByBookId(Book book) {
         return queryFactory
+                .select(posts.id.count())
                 .from(posts)
                 .where(posts.book.eq(book))
-                .groupBy(posts.book)
                 .fetchCount();
     }
 
@@ -29,5 +29,4 @@ public class PostsRepositoryImpl implements PostsRepositoryCustom{
                 .orderBy(posts.id.desc())
                 .fetch();
     }
-
 }

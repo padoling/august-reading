@@ -6,23 +6,21 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class PostsListResponseDto {
+public class PostsListUserResponseDto {
 
     private Long id;
     private String subject;
     private LocalDateTime createdDate;
-    private String author;
     private Long viewCount;
     private Long bookId;
     private String bookTitle;
     private String bookImage;
     private String bookAuthor;
 
-    public PostsListResponseDto(Posts entity) {
+    public PostsListUserResponseDto(Posts entity) {
         this.id = entity.getId();
         this.subject = entity.getSubject();
         this.createdDate = entity.getCreatedDate();
-        this.author = entity.getUser().getNickname();
         this.viewCount = entity.getViewCount();
         this.bookId = entity.getBook().getId();
         this.bookTitle = entity.getBook().getTitle();

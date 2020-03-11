@@ -103,4 +103,34 @@ public class PostsRepositoryTest {
         assertThat(posts.getCreatedDate()).isAfter(now);
         assertThat(posts.getModifiedDate()).isAfter(now);
     }
+
+    @Test
+    public void testCountByBookId() {
+        //given
+        Book book = bookRepository.findAll().get(0);
+
+        postsRepository.save(Posts.builder()
+                .subject("subject1")
+                .content("content1")
+                .book(book)
+                .build());
+
+        postsRepository.save(Posts.builder()
+                .subject("subject2")
+                .content("content2")
+                .book(book)
+                .build());
+
+        Book bookNull = bookRepository.save(Book.builder().build());
+
+        //when
+        Long count = postsRepository.countByBookId(book);
+        Long countNull = postsRepository.countByBookId(bookNull);
+
+        //then
+        assertThat(count).isNotNull();
+        assertThat(count).isEqualTo(2);
+        assertThat(countNull).isNotNull();
+        assertThat(countNull).isEqualTo(0);
+    }
 }

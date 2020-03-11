@@ -9,13 +9,12 @@
         <div class="row">
             <div class="col"></div>
             <div class="col-lg-auto">
-                <h1>리뷰 목록</h1>
+                <h1>내가 쓴 글</h1>
                 <table class="table table-horizontal table-bordered">
                     <thead class="thead-strong">
                         <tr>
                             <th>번호</th>
                             <th>제목</th>
-                            <th>작성자</th>
                             <th>작성일</th>
                             <th>조회수</th>
                             <th>책 정보</th>
@@ -25,7 +24,6 @@
                         <tr>
                             <td th:text="${post.id}"></td>
                             <td><a th:href="'/posts/'+ ${post.id}" th:text="${post.subject}"></a></td>
-                            <td th:text="${post.author}"></td>
                             <td th:text="${post.createdDate}"></td>
                             <td th:text="${post.viewCount}"></td>
                             <td>

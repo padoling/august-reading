@@ -24,7 +24,7 @@
                                     <span class="book-publisher" th:text="${book.publisher}"></span> |
                                     <span class="book-pubdate" th:text="${book.pubdate}"></span>
                                 </p>
-                                <input type="hidden" id="bookId" name="bookId" th:value="${book.id}">
+                                <a class="btn btn-success" th:href="'/posts/write?bookId=' + ${book.id}">리뷰 작성</a>
                             </div>
                         </div>
                     </div>

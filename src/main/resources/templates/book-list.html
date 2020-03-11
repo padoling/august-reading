@@ -36,9 +36,9 @@
                         <div class="card-body py-1">
                             <h6 class="card-title mb-0 book-title" th:utext="${book.title}"></h6>
                             <p class="card-text mb-0">
-                                <span class="book-author" th:text="${book.author}"></span> |
-                                <span class="book-publisher" th:text="${book.publisher}"></span> |
-                                <span class="book-pubdate" th:text="${book.pubdate}"></span>
+                                <span class="book-author" th:utext="${book.author}"></span> |
+                                <span class="book-publisher" th:utext="${book.publisher}"></span> |
+                                <span class="book-pubdate" th:utext="${book.pubdate}"></span>
                             </p>
                             <p class="card-text"><small class="text-muted book-description" th:utext="${book.description}"></small></p>
                         </div>

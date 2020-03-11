@@ -6,7 +6,6 @@ import com.padoling.portfolio.august.search.dto.NaverSearchRequestDto;
 import com.padoling.portfolio.august.search.NaverSearchService;
 import com.padoling.portfolio.august.service.book.BookService;
 import com.padoling.portfolio.august.service.posts.PostsService;
-import com.padoling.portfolio.august.web.dto.book.BookResponseDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -115,7 +114,7 @@ public class IndexController {
     }
 
     @GetMapping("/book/{id}")
-    public String bookDetail (Model model, @LoginUser SessionUser user, @PathVariable Long id) {
+    public String bookDetail(Model model, @LoginUser SessionUser user, @PathVariable Long id) {
         if(user != null) {
             if(user.getNickname() == null) {
                 return "redirect:/login/nickname";
@@ -125,5 +124,17 @@ public class IndexController {
         model.addAttribute("book", bookService.findById(id));
         model.addAttribute("posts", postsService.findByBookId(id));
         return "book-detail";
+    }
+
+    @GetMapping("/posts/user")
+    public String postsUser(Model model, @LoginUser SessionUser user) {
+        if(user != null) {
+            if(user.getNickname() == null) {
+                return "redirect:/login/nickname";
+            }
+            model.addAttribute("userNickname", user.getNickname());
+            model.addAttribute("posts", postsService.findByUserId(user.getId()));
+        }
+        return "posts-user";
     }
 }
