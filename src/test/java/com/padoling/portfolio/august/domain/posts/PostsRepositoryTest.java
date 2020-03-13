@@ -11,6 +11,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
@@ -83,6 +86,41 @@ public class PostsRepositoryTest {
         assertThat(posts.getUser().getId()).isEqualTo(user.getId());
         assertThat(posts.getBook().getId()).isEqualTo(book.getId());
         assertThat(posts.getViewCount()).isEqualTo(0);
+    }
+
+    @Test
+    public void testFindAll() {
+        //given
+        postsRepository.save(Posts.builder()
+                .subject("subject1")
+                .content("content1")
+                .build());
+        postsRepository.save(Posts.builder()
+                .subject("subject2")
+                .content("content2")
+                .build());
+        postsRepository.save(Posts.builder()
+                .subject("subject3")
+                .content("content3")
+                .build());
+
+        PageRequest pageRequest = PageRequest.of(0, 2);
+
+        //when
+        Page<Posts> postsPage = postsRepository.findAll(pageRequest);
+
+        //then
+        assertThat(postsPage).isNotNull();
+        assertThat(postsPage.getPageable().getOffset()).isEqualTo(0);
+        assertThat(postsPage.getPageable().getPageSize()).isEqualTo(2);
+        assertThat(postsPage.getTotalElements()).isEqualTo(3);
+        assertThat(postsPage.getNumberOfElements()).isEqualTo(2);
+        assertThat(postsPage.isFirst()).isEqualTo(true);
+
+        Posts posts1 = postsPage.getContent().get(0);
+        assertThat(posts1).isNotNull();
+        assertThat(posts1.getSubject()).isEqualTo("subject1");
+        assertThat(posts1.getContent()).isEqualTo("content1");
     }
 
     @Test

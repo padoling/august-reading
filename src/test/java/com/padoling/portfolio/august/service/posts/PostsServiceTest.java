@@ -7,6 +7,7 @@ import com.padoling.portfolio.august.domain.posts.PostsRepository;
 import com.padoling.portfolio.august.domain.user.Role;
 import com.padoling.portfolio.august.domain.user.User;
 import com.padoling.portfolio.august.domain.user.UserRepository;
+import com.padoling.portfolio.august.web.dto.posts.PostsListResponseDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsSaveRequestDto;
 import com.padoling.portfolio.august.web.dto.posts.PostsUpdateRequestDto;
 import org.junit.After;
@@ -15,6 +16,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -84,6 +89,53 @@ public class PostsServiceTest {
         assertThat(posts.getUser().getId()).isEqualTo(userId);
         assertThat(posts.getBook().getId()).isEqualTo(bookId);
         assertThat(posts.getViewCount()).isEqualTo(0);
+    }
+
+    @Test
+    public void testFindAll() {
+        //given
+        Book book = bookRepository.findAll().get(0);
+        User user = userRepository.findAll().get(0);
+
+        postsRepository.save(Posts.builder()
+                .subject("subject1")
+                .content("content1")
+                .user(user)
+                .book(book)
+                .build());
+        postsRepository.save(Posts.builder()
+                .subject("subject2")
+                .content("content2")
+                .user(user)
+                .book(book)
+                .build());
+        postsRepository.save(Posts.builder()
+                .subject("subject3")
+                .content("content3")
+                .user(user)
+                .book(book)
+                .build());
+
+        PageRequest pageRequest = PageRequest.of(0, 2);
+
+        //when
+        Page<PostsListResponseDto> postsPage = postsService.findAll(pageRequest);
+
+        //then
+        assertThat(postsPage).isNotNull();
+        assertThat(postsPage.getPageable().getOffset()).isEqualTo(0);
+        assertThat(postsPage.getPageable().getPageSize()).isEqualTo(2);
+        assertThat(postsPage.getTotalElements()).isEqualTo(3);
+        assertThat(postsPage.getNumberOfElements()).isEqualTo(2);
+        assertThat(postsPage.isFirst()).isEqualTo(true);
+
+        PostsListResponseDto posts1 = postsPage.getContent().get(0);
+        assertThat(posts1).isNotNull();
+        assertThat(posts1.getSubject()).isEqualTo("subject1");
+
+        PostsListResponseDto posts2 = postsPage.getContent().get(1);
+        assertThat(posts2).isNotNull();
+        assertThat(posts2.getSubject()).isEqualTo("subject2");
     }
 
     @Test

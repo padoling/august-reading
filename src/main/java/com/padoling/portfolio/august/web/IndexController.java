@@ -8,6 +8,9 @@ import com.padoling.portfolio.august.service.book.BookService;
 import com.padoling.portfolio.august.service.posts.PostsService;
 import com.padoling.portfolio.august.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +33,7 @@ public class IndexController {
             }
             model.addAttribute("userNickname", user.getNickname());
         }
+
         return "index";
     }
 
@@ -57,14 +61,15 @@ public class IndexController {
     }
 
     @GetMapping("/posts")
-    public String postsList(Model model, @LoginUser SessionUser user) {
+    public String postsList(Model model, @LoginUser SessionUser user,
+                            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC, size = 2) Pageable pageable) {
         if(user != null) {
             if(user.getNickname() == null) {
                 return "redirect:/login/nickname";
             }
             model.addAttribute("userNickname", user.getNickname());
         }
-        model.addAttribute("posts", postsService.findAllDesc());
+        model.addAttribute("postPage", postsService.findAll(pageable));
         return "posts-list";
     }
 
