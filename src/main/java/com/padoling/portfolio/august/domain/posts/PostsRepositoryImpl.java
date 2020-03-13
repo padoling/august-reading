@@ -21,12 +21,4 @@ public class PostsRepositoryImpl implements PostsRepositoryCustom{
                 .where(posts.book.eq(book))
                 .fetchCount();
     }
-
-    @Override
-    public List<Posts> findAllDesc() {
-        return queryFactory
-                .selectFrom(posts)
-                .orderBy(posts.id.desc())
-                .fetch();
-    }
 }

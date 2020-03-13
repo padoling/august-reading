@@ -9,7 +9,9 @@ import com.padoling.portfolio.august.domain.user.UserRepository;
 import com.padoling.portfolio.august.web.dto.posts.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +40,7 @@ public class PostsService {
                 .build()).getId();
     }
 
+    @Transactional(readOnly = true)
     public PostsResponseDto findById(Long id) {
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
@@ -45,6 +48,7 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
+    @Transactional(readOnly = true)
     public List<PostsListBookResponseDto> findByBookId(Long bookId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 도서가 없습니다. id=" + bookId));
@@ -53,6 +57,7 @@ public class PostsService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public List<PostsListUserResponseDto> findByUserId(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + userId));
@@ -65,6 +70,14 @@ public class PostsService {
     public Page<PostsListResponseDto> findAll(Pageable pageable) {
         return postsRepository.findAll(pageable)
                 .map(PostsListResponseDto::new);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<PostsRecentResponseDto> findRecentPosts() {
+        PageRequest pageRequest = PageRequest.of(0, 5, Sort.Direction.DESC, "id");
+
+        return postsRepository.findAll(pageRequest)
+                .map(PostsRecentResponseDto::new);
     }
 
     @Transactional

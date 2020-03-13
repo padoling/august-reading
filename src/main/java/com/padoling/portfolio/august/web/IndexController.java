@@ -33,7 +33,7 @@ public class IndexController {
             }
             model.addAttribute("userNickname", user.getNickname());
         }
-
+        model.addAttribute("postPage", postsService.findRecentPosts());
         return "index";
     }
 

@@ -20,20 +20,27 @@
             <!-- recent reviews -->
             <div class="col-lg-auto py-3">
                 <h4 class="mb-3">최신 리뷰</h4>
-                <div class="card mt-5" style="width: 750px;">
-                    <div class="row no-gutters">
-                        <div class="col-auto">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/136/085/13608567.jpg?type=m1&udate=20180520" width="82" height="124" class="card-img img-thumbnail" alt="...">
-                            <p>고양이2</p>
-                        </div>
-                        <div class="col">
-                            <div class="card-body py-1">
-                                <p class="card-title mb-0">정말 귀여운 책!</p>
-                                <p class="card-text"><small class="text-muted">너무너무 귀엽읍니다</small></p>
+                <div th:if="${postPage.empty}">등록된 리뷰가 없습니다.</div>
+                <th:block th:if="${!postPage.empty}">
+                    <div th:each="post:${postPage.content}" class="card mt-5" style="width: 750px;">
+                        <div class="row no-gutters">
+                            <div class="col-auto">
+                                <img th:src="${post.bookImage}" width="82" height="124" class="card-img img-thumbnail" alt="...">
+                                <p th:utext="${post.bookTitle}"></p>
+                            </div>
+                            <div class="col">
+                                <div class="card-body py-1">
+                                    <p class="card-text mb-0">
+                                        <span th:utext="${post.subject}"></span> |
+                                        <span th:utext="${post.author}"></span> |
+                                        <span th:text="${post.createdDate}"></span>
+                                    </p>
+                                    <p class="card-text"><small class="text-muted" th:utext="${post.content}"></small></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </th:block>
             </div>
 
             <div class="col"></div>
