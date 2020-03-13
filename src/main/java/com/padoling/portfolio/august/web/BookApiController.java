@@ -2,7 +2,6 @@ package com.padoling.portfolio.august.web;
 
 import com.padoling.portfolio.august.service.book.BookService;
 import com.padoling.portfolio.august.web.dto.book.BookInfoRequestDto;
-import com.padoling.portfolio.august.web.dto.book.BookInfoResponseDto;
 import com.padoling.portfolio.august.web.dto.book.BookSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,7 @@ public class BookApiController {
     private final BookService bookService;
 
     @GetMapping("/api/v1/book/info")
-    public BookInfoResponseDto findBookInfo(BookInfoRequestDto requestDto) {
+    public Long findBook(BookInfoRequestDto requestDto) {
         return bookService.findBookInfo(requestDto);
     }
 

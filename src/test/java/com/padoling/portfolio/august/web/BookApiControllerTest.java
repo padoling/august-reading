@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.padoling.portfolio.august.domain.book.Book;
 import com.padoling.portfolio.august.domain.book.BookRepository;
 import com.padoling.portfolio.august.web.dto.book.BookInfoRequestDto;
-import com.padoling.portfolio.august.web.dto.book.BookInfoResponseDto;
 import com.padoling.portfolio.august.web.dto.book.BookResponseDto;
 import com.padoling.portfolio.august.web.dto.book.BookSaveRequestDto;
 import org.junit.After;
@@ -96,7 +95,7 @@ public class BookApiControllerTest {
 
     @Test
     @WithMockUser(roles = "USER")
-    public void testFindBookInfo() throws Exception {
+    public void testFindBook() throws Exception {
         //given
         String title = "test title";
         String isbn = "test isbn";
@@ -131,16 +130,11 @@ public class BookApiControllerTest {
 
         //then
         String notSavedContent = notSavedResult.getResponse().getContentAsString();
-        BookInfoResponseDto notSavedResponseDto = objectMapper.readValue(notSavedContent, BookInfoResponseDto.class);
-        assertThat(notSavedResponseDto).isNotNull();
-        assertThat(notSavedResponseDto.getBookId()).isNull();
-        assertThat(notSavedResponseDto.getPostsCount()).isEqualTo(0);
+        assertThat(notSavedContent).isEqualTo("");
 
         String savedContent = savedResult.getResponse().getContentAsString();
-        BookInfoResponseDto savedResponseDto = objectMapper.readValue(savedContent, BookInfoResponseDto.class);
         Long savedBookId = bookRepository.findAll().get(0).getId();
-        assertThat(savedResponseDto).isNotNull();
-        assertThat(savedResponseDto.getBookId()).isEqualTo(savedBookId);
-        assertThat(savedResponseDto.getPostsCount()).isEqualTo(0);
+        assertThat(savedContent).isNotNull();
+        assertThat(savedContent).isEqualTo(savedBookId.toString());
     }
 }

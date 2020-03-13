@@ -5,7 +5,6 @@ import com.padoling.portfolio.august.domain.book.BookRepository;
 import com.padoling.portfolio.august.domain.posts.Posts;
 import com.padoling.portfolio.august.domain.posts.PostsRepository;
 import com.padoling.portfolio.august.web.dto.book.BookInfoRequestDto;
-import com.padoling.portfolio.august.web.dto.book.BookInfoResponseDto;
 import com.padoling.portfolio.august.web.dto.book.BookSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
@@ -109,16 +108,12 @@ public class BookServiceTest {
                 .build();
 
         //when
-        BookInfoResponseDto responseDto1 = bookService.findBookInfo(requestDto1);
-        BookInfoResponseDto responseDto2 = bookService.findBookInfo(requestDto2);
+        Long bookId1 = bookService.findBookInfo(requestDto1);
+        Long bookId2 = bookService.findBookInfo(requestDto2);
 
         //then
-        assertThat(responseDto1).isNotNull();
-        assertThat(responseDto1.getBookId()).isEqualTo(book.getId());
-        assertThat(responseDto1.getPostsCount()).isEqualTo(1);
-        assertThat(responseDto1.getStarScore()).isNull();
-        assertThat(responseDto2).isNotNull();
-        assertThat(responseDto2.getBookId()).isNull();
-        assertThat(responseDto2.getPostsCount()).isEqualTo(0);
+        assertThat(bookId1).isNotNull();
+        assertThat(bookId1).isEqualTo(book.getId());
+        assertThat(bookId2).isNull();
     }
 }

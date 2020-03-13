@@ -41,8 +41,8 @@ public class IndexController {
         return "login-nickname";
     }
 
-    @GetMapping("/book/list")
-    public String bookList(Model model, @LoginUser SessionUser user, NaverSearchRequestDto requestDto) {
+    @GetMapping("/search/book")
+    public String searchBook(Model model, @LoginUser SessionUser user, NaverSearchRequestDto requestDto) {
         if(user != null) {
             if(user.getNickname() == null) {
                 return "redirect:/login/nickname";
@@ -50,10 +50,10 @@ public class IndexController {
             model.addAttribute("userNickname", user.getNickname());
         }
         if(requestDto.getQuery() == null) {
-            return "book-list";
+            return "search-book";
         }
         model.addAttribute("books", naverSearchService.searchByQuery(requestDto));
-        return "book-list";
+        return "search-book";
     }
 
     @GetMapping("/posts")

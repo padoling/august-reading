@@ -2,9 +2,7 @@ package com.padoling.portfolio.august.service.book;
 
 import com.padoling.portfolio.august.domain.book.Book;
 import com.padoling.portfolio.august.domain.book.BookRepository;
-import com.padoling.portfolio.august.domain.posts.PostsRepository;
 import com.padoling.portfolio.august.web.dto.book.BookInfoRequestDto;
-import com.padoling.portfolio.august.web.dto.book.BookInfoResponseDto;
 import com.padoling.portfolio.august.web.dto.book.BookResponseDto;
 import com.padoling.portfolio.august.web.dto.book.BookSaveRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class BookService {
 
     private final BookRepository bookRepository;
-
-    private final PostsRepository postsRepository;
 
     @Transactional
     public Long saveOrUpdate(BookSaveRequestDto requestDto) {
@@ -36,19 +32,13 @@ public class BookService {
     }
 
     @Transactional
-    public BookInfoResponseDto findBookInfo(BookInfoRequestDto requestDto) {
+    public Long findBookInfo(BookInfoRequestDto requestDto) {
         Book book = bookRepository.findByIsbnAndPubdate(requestDto.getIsbn(), requestDto.getPubdate())
                 .orElse(null);
         if(book == null) {
-            return BookInfoResponseDto.builder()
-                    .postsCount(0L)
-                    .build();
+            return null;
         }
-        Long postsCount = postsRepository.countByBookId(book);
-        return BookInfoResponseDto.builder()
-                .bookId(book.getId())
-                .postsCount(postsCount)
-                .build();
+        return book.getId();
     }
 
     public BookResponseDto findById(Long id) {

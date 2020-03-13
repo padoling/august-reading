@@ -24,14 +24,17 @@
                                     <span class="book-publisher" th:text="${book.publisher}"></span> |
                                     <span class="book-pubdate" th:text="${book.pubdate}"></span>
                                 </p>
-                                <a class="btn btn-success" th:href="'/posts/write?bookId=' + ${book.id}">리뷰 작성</a>
+                                <p class="card-text"><small class="text-muted book-description" th:utext="${book.description}"></small></p>
+                                <a class="btn btn-primary" th:href="'/posts/write?bookId=' + ${book.id}">리뷰 작성</a>
+                                <a class="btn btn-success book-link" th:href="${book.link}" target="_blank">상세 정보<small>Naver</small></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <h1>리뷰 목록</h1>
-                <table class="table table-horizontal table-bordered">
+                <div th:if="${posts == null}">등록된 리뷰가 없습니다.</div>
+                <table th:if="${posts != null}" class="table table-horizontal table-bordered">
                     <thead class="thead-strong">
                     <tr>
                         <th>번호</th>
