@@ -49,21 +49,19 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostsListBookResponseDto> findByBookId(Long bookId) {
+    public Page<PostsListBookResponseDto> findByBookId(Long bookId, Pageable pageable) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 도서가 없습니다. id=" + bookId));
-        return postsRepository.findByBook(book).stream()
-                .map(PostsListBookResponseDto::new)
-                .collect(Collectors.toList());
+        return postsRepository.findByBook(book, pageable)
+                .map(PostsListBookResponseDto::new);
     }
 
     @Transactional(readOnly = true)
-    public List<PostsListUserResponseDto> findByUserId(Long userId) {
+    public Page<PostsListUserResponseDto> findByUserId(Long userId, Pageable pageable) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + userId));
-        return postsRepository.findByUser(user).stream()
-                .map(PostsListUserResponseDto::new)
-                .collect(Collectors.toList());
+        return postsRepository.findByUser(user, pageable)
+                .map(PostsListUserResponseDto::new);
     }
 
     @Transactional(readOnly = true)

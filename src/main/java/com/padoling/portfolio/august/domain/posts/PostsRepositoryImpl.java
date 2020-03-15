@@ -4,8 +4,6 @@ import com.padoling.portfolio.august.domain.book.Book;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 import static com.padoling.portfolio.august.domain.posts.QPosts.posts;
 
 @RequiredArgsConstructor

@@ -62,7 +62,7 @@ public class IndexController {
 
     @GetMapping("/posts")
     public String postsList(Model model, @LoginUser SessionUser user,
-                            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC, size = 2) Pageable pageable) {
+                            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         if(user != null) {
             if(user.getNickname() == null) {
                 return "redirect:/login/nickname";
@@ -119,7 +119,8 @@ public class IndexController {
     }
 
     @GetMapping("/book/{id}")
-    public String bookDetail(Model model, @LoginUser SessionUser user, @PathVariable Long id) {
+    public String bookDetail(Model model, @LoginUser SessionUser user, @PathVariable Long id,
+                             @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         if(user != null) {
             if(user.getNickname() == null) {
                 return "redirect:/login/nickname";
@@ -127,18 +128,19 @@ public class IndexController {
             model.addAttribute("userNickname", user.getNickname());
         }
         model.addAttribute("book", bookService.findById(id));
-        model.addAttribute("posts", postsService.findByBookId(id));
+        model.addAttribute("postPage", postsService.findByBookId(id, pageable));
         return "book-detail";
     }
 
     @GetMapping("/user/posts")
-    public String userPosts(Model model, @LoginUser SessionUser user) {
+    public String userPosts(Model model, @LoginUser SessionUser user,
+                            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         if(user != null) {
             if(user.getNickname() == null) {
                 return "redirect:/login/nickname";
             }
             model.addAttribute("userNickname", user.getNickname());
-            model.addAttribute("posts", postsService.findByUserId(user.getId()));
+            model.addAttribute("postPage", postsService.findByUserId(user.getId(), pageable));
         }
         return "user-posts";
     }

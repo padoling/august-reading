@@ -4,8 +4,16 @@ var main = {
         $(document).ready(function() {
             _this.summernoteInit();
         });
+        $(window).bind('beforeunload', function() {
+            return '변경사항이 저장되지 않을 수 있습니다.';
+        });
+        $('#btn-cancle').on('click', function() {
+            _this.cancle();
+        });
         $('#btn-save').on('click', function() {
-            _this.save();
+            if(_this.verify()) {
+                _this.save();
+            }
         });
     },
     summernoteInit : function() {
@@ -44,7 +52,25 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
+    verify : function() {
+        var blank_pattern = /^\s+|\s+$/g;
+        if($('#subject').val() == null || $('#subject').val().replace(blank_pattern, '') == '') {
+            alert('제목을 입력해주세요.');
+            return false;
+        }
+        if($('#summernote').val() == null || $('#summernote').val().replace(blank_pattern, '') == '') {
+            alert('내용을 입력해주세요.');
+            return false;
+        }
+        return true;
+    },
+    cancle : function() {
+        var referrer = document.referrer;
+        window.location.href = referrer;
+    },
     save : function() {
+        $(window).unbind('beforeunload');
+
         var data = {
             subject : $('#subject').val(),
             content : $('#summernote').val(),
