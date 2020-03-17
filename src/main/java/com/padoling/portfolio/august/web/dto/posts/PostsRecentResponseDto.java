@@ -21,13 +21,19 @@ public class PostsRecentResponseDto {
         this.id = entity.getId();
         this.subject = entity.getSubject();
         this.content = entity.getContent();
-        if(entity.getContent().length() >= 28) {
-            this.content = this.content.substring(0, 29);
-        }
+        this.content = adjustContent(entity.getContent());
         this.createdDate = entity.getCreatedDate();
         this.author = entity.getUser().getNickname();
         this.bookId = entity.getBook().getId();
         this.bookTitle = entity.getBook().getTitle();
         this.bookImage = entity.getBook().getImage();
+    }
+
+    private String adjustContent(String entityContent) {
+        String replacedContent = entityContent.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", " ");
+        if(replacedContent.length() >= 80) {
+            replacedContent = replacedContent.substring(0, 80) + " ...";
+        }
+        return replacedContent;
     }
 }

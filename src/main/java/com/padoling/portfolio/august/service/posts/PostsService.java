@@ -72,7 +72,7 @@ public class PostsService {
 
     @Transactional(readOnly = true)
     public Page<PostsRecentResponseDto> findRecentPosts() {
-        PageRequest pageRequest = PageRequest.of(0, 5, Sort.Direction.DESC, "id");
+        PageRequest pageRequest = PageRequest.of(0, 3, Sort.Direction.DESC, "id");
 
         return postsRepository.findAll(pageRequest)
                 .map(PostsRecentResponseDto::new);

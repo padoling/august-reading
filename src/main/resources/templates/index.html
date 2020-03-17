@@ -2,52 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="fragments/header"></th:block>
+    <link rel="stylesheet" href="/css/app/index.css">
 </head>
 <body>
     <th:block th:include="fragments/nav-bar"></th:block>
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron text-center">
         <div class="container">
-            <h2 class="display-4">가볍게 쓰고 공유하는 독서일기</h2>
-            <p class="lead">책 읽고 일기 쓰듯이 리뷰 적으세용~ 다른 사람들이 적은 리뷰도 볼 수 있어용</p>
+            <h1>팔월의 독서</h1>
+            <p class="lead text-muted">원하는 책을 검색하고 책에 대한 리뷰를 작성하세요.<br>
+                독후감처럼 길게 적어도, 한 두줄로 간단하게 적어도 좋아요.<br>
+                자신의 리뷰를 다른 사람들과 익명으로 나눠보아요.
+            </p>
             <a class="btn btn-primary" href="/search/book">리뷰 작성</a>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col"></div>
-
-            <!-- recent reviews -->
-            <div class="col-lg-auto py-3">
-                <h4 class="mb-3">최신 리뷰</h4>
-                <div th:if="${postPage.empty}">등록된 리뷰가 없습니다.</div>
-                <th:block th:if="${!postPage.empty}">
-                    <div th:each="post:${postPage.content}" class="card mt-5" style="width: 750px;">
-                        <div class="row no-gutters">
-                            <div class="col-auto">
-                                <img th:src="${post.bookImage}" width="82" height="124" class="card-img img-thumbnail" alt="...">
-                                <p th:utext="${post.bookTitle}"></p>
-                            </div>
-                            <div class="col">
-                                <div class="card-body py-1">
-                                    <p class="card-text mb-0">
-                                        <span th:utext="${post.subject}"></span> |
-                                        <span th:utext="${post.author}"></span> |
-                                        <span th:text="${post.createdDate}"></span>
-                                    </p>
-                                    <p class="card-text"><small class="text-muted" th:utext="${post.content}"></small></p>
-                                </div>
+    <!-- recent reviews -->
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <h4 class="mb-5 text-center">최신 리뷰</h4>
+            <div th:if="${postPage.empty}" class="text-center">등록된 리뷰가 없습니다.</div>
+            <div th:if="${!postPage.empty}" class="row">
+                <div th:each="post:${postPage.content}" class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <p class="text-center my-0" th:utext="${post.bookTitle}"></p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:utext="${post.subject}"></h5>
+                            <p class="card-text" th:utext="${post.content}"></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a type="button" class="btn btn-sm btn-outline-secondary" th:href="'/posts/' + ${post.id}">더보기</a>
+                                <small class="text-muted" th:utext="'by.' + ${post.author}"></small>
                             </div>
                         </div>
                     </div>
-                </th:block>
+                </div>
             </div>
-
-            <div class="col"></div>
         </div>
     </div>
-
     <th:block th:include="fragments/footer"></th:block>
-    <script src="/js/app/index.js"></script>
 </body>
 </html>

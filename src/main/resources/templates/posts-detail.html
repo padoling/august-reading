@@ -30,13 +30,17 @@
                 </div>
 
                 <div class="posts-container my-5">
-                    <div class="post">
-                        <h1 th:text="${post.subject}"></h1>
-                        <span class="post-author" th:text="'작성자 : ' + ${author}"></span>
-                        <span class="post-date" th:text="${post.createdDate}"></span>
-                        <span class="post-viewCount" th:text="'조회수 : ' + ${post.viewCount}"></span>
-                        <p th:utext="${post.content}"></p>
-                        <input type="hidden" id="postId" name="postId" th:value="${post.id}">
+                    <div class="row">
+                        <div class="col-lg-auto">
+                            <div class="post">
+                                <h1 th:text="${post.subject}"></h1>
+                                <span class="post-author" th:text="'작성자 : ' + ${author}"></span>
+                                <span class="post-date" th:text="${post.createdDate}"></span>
+                                <span class="post-viewCount" th:text="'조회수 : ' + ${post.viewCount}"></span>
+                                <p th:utext="${post.content}"></p>
+                                <input type="hidden" id="postId" name="postId" th:value="${post.id}">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <a type="button" href="/posts" class="btn btn-primary">리뷰 목록</a>

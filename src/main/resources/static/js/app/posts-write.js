@@ -26,7 +26,12 @@ var main = {
             lang: 'ko-KR',
             callbacks: {
                 onImageUpload: function(files) {
+                    var maxSize = 7340032;
                     for(var i = files.length -1; i >= 0; i--) {
+                        if(files[i].size > maxSize) {
+                            alert("첨부파일 사이즈는 7MB 이내로 등록 가능합니다.");
+                            return;
+                        }
                         _this.sendFile(files[i], this);
                     }
                 }

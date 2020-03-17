@@ -62,6 +62,8 @@ var main = {
         return true;
     },
     update : function() {
+        $(window).unbind('beforeunload');
+
         var data = {
             subject : $('#subject').val(),
             content : $('#summernote').val(),
