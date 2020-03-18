@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 .jumbotron{
-    background-color : white;
-    padding : 6rem 2rem;
+    background-color : #ECF2BD;
+    padding : 5rem 2rem;
+    margin : 0;
 }

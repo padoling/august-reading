@@ -17,7 +17,9 @@ var main = {
         })
     },
     checkNick : function() {
-        if($('#nickname').val().length == 0) {
+        var blank_pattern = /^\s+|\s+$/g;
+        var _nickname = $('#nickname').val().replace(/\s/g, "");
+        if(_nickname.length == 0) {
             alert('닉네임은 1자 이상 입력해야 합니다.');
         } else {
             var nickname = $('#nickname').val();

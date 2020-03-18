@@ -5,80 +5,84 @@
 </head>
 <body>
     <th:block th:include="fragments/nav-bar"></th:block>
-
     <!-- 검색창 -->
-    <form action="/search/book" method="GET">
-        <div class="form-row align-items-center">
-            <div class="col-auto">
-                <input type="search" class="form-control mb-2" name="query"
-                       th:value="${books==null ? null : books.query}" placeholder="책 검색">
-                <input type="hidden" name="start" value="1">
-                <input type="hidden" name="display" value="10">
-            </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-2">검색</button>
-            </div>
-        </div>
-    </form>
-
-    <h3>원하는 책을 검색한 뒤 책에 대한 리뷰를 작성해보세요.</h3>
-    <!-- 리스트 -->
-    <div th:if="${books == null}">검색 결과가 없습니다.</div>
-    <th:block th:if="${books != null}">
-        <div th:each="book:${books.items}" class="card mt-5" style="max-width: 750px;">
-            <div class="row no-gutters">
-                <div class="col-auto">
-                    <img class="card-img img-thumbnail book-image" th:src="${book.image}" alt="...">
+    <div class="container my-5 text-center">
+        <form action="/search/book" method="GET">
+            <div class="form-row align-items-center">
+                <div class="col"></div>
+                <div class="col-7">
+                    <input type="search" class="form-control mb-2" name="query" id="query"
+                           th:value="${books==null ? null : books.query}" placeholder="책 제목, 저자, 출판사 등" required>
+                    <input type="hidden" name="start" value="1">
+                    <input type="hidden" name="display" value="10">
                 </div>
-                <div class="col">
-                    <div class="card-body py-1">
-                        <h6 class="card-title mb-0 book-title" th:utext="${book.title}"></h6>
-                        <p class="card-text mb-0">
-                            <span class="book-author" th:utext="${book.author}"></span> |
-                            <span class="book-publisher" th:utext="${book.publisher}"></span> |
-                            <span class="book-pubdate" th:utext="${book.pubdate}"></span>
-                            <input type="hidden" class="book-isbn" th:value="${book.isbn}">
-                        </p>
-                        <p class="card-text"><small class="text-muted book-description" th:utext="${book.description}"></small></p>
-                        <button type="button" class="btn btn-primary btn-write">리뷰 작성</button>
-                        <button type="button" class="btn btn-secondary btn-review">리뷰 보기</button>
-                        <a class="btn btn-success book-link" th:href="${book.link}" target="_blank">상세 정보<small>Naver</small></a>
-                    </div>
+                <div class="col-2">
+                    <button type="submit" id="btn-search" class="btn btn-primary btn-block mb-2">검색</button>
                 </div>
+                <div class="col"></div>
             </div>
-        </div>
-    </th:block>
+        </form>
+    </div>
 
-    <!-- pagination -->
-    <nav aria-label="Page navigation">
+    <!-- 검색 결과 -->
+    <div class="container">
         <div class="row">
-            <div class="col">
-                <ul th:if="${books != null}" class="pagination justify-content-center">
-                    <li th:if="${!books.first}" class="page-item">
-                        <a class="page-link"
-                           th:href="@{/search/book(query=${books.query}, start=${books.start-10}, display=10)}">Previous</a>
-                    </li>
-                    <li th:if="${books.first}" class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                </ul>
+            <div class="col"></div>
+            <div class="col-lg-auto">
+                <div th:if="${books == null}" class="text-center">
+                    <h4><strong>원하는 책을 검색한 뒤 리뷰를 작성해보세요~!</strong></h4>
+                </div>
+                <th:block th:if="${books != null}">
+                    <h5 class="text-center"><strong>검색 결과</strong></h5>
+                    <div th:if="${books.items.empty}">검색 결과가 없습니다.</div>
+                    <div th:each="book:${books.items}" class="card mt-3" style="max-width: 750px;">
+                        <div class="row no-gutters">
+                            <div class="col-auto">
+                                <img class="card-img img-thumbnail book-image" th:src="${book.image}" alt="...">
+                            </div>
+                            <div class="col">
+                                <div class="card-body py-1">
+                                    <h6 class="card-title mb-0 book-title" th:utext="${book.title}"></h6>
+                                    <p class="card-text mb-0">
+                                        <span class="book-author" th:utext="${book.author}"></span> |
+                                        <span class="book-publisher" th:utext="${book.publisher}"></span> |
+                                        <span class="book-pubdate" th:utext="${book.pubdate}"></span>
+                                        <input type="hidden" class="book-isbn" th:value="${book.isbn}">
+                                    </p>
+                                    <p class="card-text"><small class="text-muted book-description" th:utext="${book.description}"></small></p>
+                                    <button type="button" class="btn btn-primary btn-write">리뷰 작성</button>
+                                    <button type="button" class="btn btn-secondary btn-review">리뷰 보기</button>
+                                    <a class="btn btn-success book-link" th:href="${book.link}" target="_blank">상세 정보<small>Naver</small></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
             </div>
             <div class="col"></div>
-            <div class="col">
-                <ul th:if="${books != null}" class="pagination justify-content-center">
-                    <li th:if="${!books.last}" class="page-item">
-                        <a class="page-link"
-                           th:href="@{/search/book(query=${books.query}, start=${books.start+10}, display=10)}">Next</a>
-                    </li>
-                    <li th:if="${books.last}" class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
-                    </li>
-                </ul>
-            </div>
         </div>
-    </nav>
+    </div>
+
+    <!-- pagination -->
+    <div th:if="${books != null}" class="container my-5">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-auto">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a th:if="${!books.first}" type="button" class="btn btn-secondary"
+                       th:href="@{/search/book(query=${books.query}, start=${books.start-10}, display=10)}">이전 페이지</a>
+                    <a th:if="${books.first}" href="#" class="btn btn-secondary disabled" tabindex="-1" role="button" aria-disabled="true">이전 페이지</a>
+                    <a th:if="${!books.last}" type="button" class="btn btn-secondary"
+                       th:href="@{/search/book(query=${books.query}, start=${books.start+10}, display=10)}">다음 페이지</a>
+                    <a th:if="${books.last}" href="#" class="btn btn-secondary disabled" tabindex="-1" role="button" aria-disabled="true">다음 페이지</a>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
 
     <th:block th:include="fragments/footer"></th:block>
-    <script th:inline="javascript" src="/js/app/search-book.js"></script>
+    <script src="/js/app/search-book.js"></script>
+    <script src="/js/app/nav-bar.js"></script>
 </body>
 </html>

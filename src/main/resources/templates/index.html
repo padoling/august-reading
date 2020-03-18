@@ -6,30 +6,30 @@
 </head>
 <body>
     <th:block th:include="fragments/nav-bar"></th:block>
-    <div class="jumbotron text-center">
+    <div class="jumbotron jumbotron-fluid text-center">
         <div class="container">
             <h1>팔월의 독서</h1>
             <p class="lead text-muted">원하는 책을 검색하고 책에 대한 리뷰를 작성하세요.<br>
                 독후감처럼 길게 적어도, 한 두줄로 간단하게 적어도 좋아요.<br>
                 자신의 리뷰를 다른 사람들과 익명으로 나눠보아요.
             </p>
-            <a class="btn btn-primary" href="/search/book">리뷰 작성</a>
+            <a class="btn btn-lg" href="/search/book" style="background-color: #C7D93D"><strong class="text-white">리뷰 작성</strong></a>
         </div>
     </div>
 
     <!-- recent reviews -->
     <div class="album py-5 bg-light">
         <div class="container">
-            <h4 class="mb-5 text-center">최신 리뷰</h4>
+            <h4 class="mb-5 text-center"><strong>최신 리뷰</strong></h4>
             <div th:if="${postPage.empty}" class="text-center">등록된 리뷰가 없습니다.</div>
             <div th:if="${!postPage.empty}" class="row">
                 <div th:each="post:${postPage.content}" class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <div class="card-header">
-                            <p class="text-center my-0" th:utext="${post.bookTitle}"></p>
+                        <div class="card-header text-white" style="background-color: #86A614">
+                            <p class="text-center my-0"><strong th:utext="${post.bookTitle}"></strong></p>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title" th:utext="${post.subject}"></h5>
+                            <h5 class="card-title"><strong th:utext="${post.subject}"></strong></h5>
                             <p class="card-text" th:utext="${post.content}"></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a type="button" class="btn btn-sm btn-outline-secondary" th:href="'/posts/' + ${post.id}">더보기</a>
@@ -42,5 +42,6 @@
         </div>
     </div>
     <th:block th:include="fragments/footer"></th:block>
+    <script src="/js/app/nav-bar.js"></script>
 </body>
 </html>

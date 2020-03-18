@@ -19,7 +19,6 @@ public class NaverSearchResponseDto {
 
     @Getter
     @Setter
-    @ToString
     @NoArgsConstructor
     public static class Item {
         private String title;

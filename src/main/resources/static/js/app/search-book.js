@@ -8,7 +8,10 @@ var main = {
         $('.btn-write').on('click', function() {
             var $card = $(this).closest('.card');
             _this.bookSave($card);
-        })
+        });
+        $('#btn-search').on('click', function() {
+            return _this.checkQuery();
+        });
     },
     findBook : function($card) {
         var isbn = $card.find('.book-isbn').val();
@@ -53,6 +56,13 @@ var main = {
         }).fail(function(error) {
             alert(JSON.stringify(error));
         });
+    },
+    checkQuery : function() {
+        var blank_pattern = /^\s+|\s+$/g;
+        if($('#query').val().replace(/\s/g, "").length == 0) {
+            alert('검색어를 입력해주세요.');
+            return false;
+        }
     }
 }
 
