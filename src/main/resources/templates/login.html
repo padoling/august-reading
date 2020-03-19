@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/header"></th:block>
+    <link rel="stylesheet" href="/css/app/login.css">
+</head>
+<body>
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark px-5" style="background-color: #182459">
+        <a class="navbar-brand" href="/"><strong>팔월의 독서</strong></a>
+    </nav>
+
+    <div class="container text-center py-5">
+        <h3 class="py-3"><strong>소셜 로그인</strong></h3>
+        <p class="text-muted">로그인 후 이용 가능합니다.</p>
+        <a role="button" class="btn btn-primary btn-block border-0" href="/oauth2/authorization/google">
+            <img src="/img/app/google_img.png" width="42px" height="42px"/>  구글 계정으로 로그인</a><hr class="m-1">
+        <a role="button" class="btn btn-success btn-block border-0" href="/oauth2/authorization/naver">
+            <img src="/img/app/naver_img.png" width="42px" height="42px"/>  네이버 계정으로 로그인</a><hr class="m-1">
+        <a role="button" class="btn btn-warning btn-block border-0" href="/oauth2/authorization/kakao">
+            <img src="/img/app/kakao_img.png" width="42px" height="42px"/>  카카오 계정으로 로그인</a>
+    </div>
+    <th:block th:include="fragments/footer"></th:block>
+</body>
+</html>

@@ -37,6 +37,11 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @GetMapping("/login/nickname")
     public String loginNickname(Model model, @LoginUser SessionUser user) {
         if(user != null) {
