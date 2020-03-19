@@ -64,7 +64,7 @@ var main = {
                 contentType : 'application/json; charset=utf-8',
                 data : JSON.stringify(data)
             }).done(function(result) {
-                alert('닉네임 등록 완료! id = ' + result);
+                alert('닉네임 설정 완료!');
                 window.location.href = '/';
             }).fail(function(error) {
                 alert(JSON.stringify(error));
