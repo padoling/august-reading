@@ -9,7 +9,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col"></div>
-            <div class="col-lg-auto">
+            <div class="col-lg-auto w-75">
                 <h3 class="text-center pb-5"><strong>리뷰 작성</strong></h3>
 
                 <!-- 책 정보 -->
@@ -20,7 +20,7 @@
                     <div class="col">
                         <h5 class="font-weight-bold book-title" th:utext="${book.title}"></h5>
                         <p class="mb-0">
-                            <span class="book-author" th:text="'저자 : ' + ${book.author}"></span>
+                            <span class="book-author" th:text="${book.author} + ' 지음'"></span>
                         </p>
                         <input type="hidden" id="bookId" name="bookId" th:value="${book.id}">
                     </div>
@@ -30,7 +30,7 @@
                 <p class="text-center">당신의 생각을 적어주세요.</p>
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="subject" name="subject" placeholder="제목" required>
+                        <input type="text" class="form-control" id="subject" name="subject" maxlength="100" placeholder="제목" required>
                         <input type="hidden" id="userId" name="userId" th:value="${userId}">
                     </div>
                     <div class="form-group">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="button" id="btn-cancle" class="btn btn-secondary mr-2">취소</button>
-                        <button type="button" id="btn-save" class="btn btn-primary">작성 완료</button>
+                        <button type="button" id="btn-save" class="btn btn-info">작성 완료</button>
                     </div>
                 </form>
             </div>

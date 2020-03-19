@@ -9,7 +9,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col"></div>
-            <div class="col-lg-auto">
+            <div class="col-lg-auto w-75">
                 <h3 class="text-center pb-5"><strong>리뷰 수정</strong></h3>
 
                 <!-- 책 정보 -->
@@ -20,7 +20,7 @@
                     <div class="col">
                         <h5 class="font-weight-bold book-title" th:utext="${book.title}"></h5>
                         <p class="mb-0">
-                            <span class="book-author" th:text="'저자 : ' + ${book.author}"></span>
+                            <span class="book-author" th:text="${book.author} + ' 지음'"></span>
                         </p>
                         <input type="hidden" id="bookId" name="bookId" th:value="${book.id}">
                     </div>

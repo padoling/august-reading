@@ -1,15 +1,14 @@
 var main = {
     init : function() {
         var _this = this;
-        var isChecked = false;
         $('#check-nick').on('click', function() {
             _this.checkNick();
         });
         $('#nickname').change(function() {
-            isChecked = false;
+            $('#nickname').attr("is-checked", "false");
             $('#checked-msg').empty();
         });
-        $('#nickname').keyup(function() {
+        $('#nickname').keydown(function() {
             _this.checkLength($(this));
         });
         $('#btn-submit').on('click', function() {
@@ -17,7 +16,6 @@ var main = {
         })
     },
     checkNick : function() {
-        var blank_pattern = /^\s+|\s+$/g;
         var _nickname = $('#nickname').val().replace(/\s/g, "");
         if(_nickname.length == 0) {
             alert('닉네임은 1자 이상 입력해야 합니다.');
@@ -30,11 +28,11 @@ var main = {
                 dataType : 'json'
             }).done(function(result) {
                 if(result == true) {
-                    isChecked = false;
+                    $('#nickname').attr("is-checked", "false");
                     $('#checked-msg').empty();
                     $('#checked-msg').append('<p>이미 사용 중인 닉네임입니다.</p>');
                 } else {
-                    isChecked = true;
+                    $('#nickname').attr("is-checked", "true");
                     $('#checked-msg').empty();
                     $('#checked-msg').append('<p>사용 가능한 닉네임입니다.</p>');
                 }
@@ -51,7 +49,7 @@ var main = {
     updateNickname : function() {
         if($('#nickname').val().length == 0) {
             alert('닉네임은 1자 이상 입력해야 합니다.');
-        } else if(isChecked == false) {
+        } else if($('#nickname').attr("is-checked") == "false") {
             alert('닉네임 중복 확인을 해주세요.');
         } else {
             var data = {

@@ -29,6 +29,7 @@ public class Book extends BaseTimeEntity {
 
     private String isbn;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     private String pubdate;

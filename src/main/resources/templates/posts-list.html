@@ -8,28 +8,33 @@
     <div class="container">
         <div class="row">
             <div class="col"></div>
-            <div class="col-auto">
+            <div class="col-lg-auto w-75">
                 <h3 class="my-5 text-center"><strong>리뷰 목록</strong></h3>
                 <div th:if="${postPage.empty}" class="text-center">등록된 리뷰가 없습니다.</div>
-
-                <div th:each="post:${postPage.content}" class="card mt-2" style="max-width: 750px;">
-                    <div class="row no-gutters">
+                <div th:each="post:${postPage.content}">
+                    <hr>
+                    <div class="row pb-3">
                         <div class="col-auto">
-                            <img class="card-img img-thumbnail book-image" th:src="${post.bookImage}" alt="...">
+                            <img th:src="${post.bookImage}" alt="..." style="width:40px; height:60px;">
                         </div>
                         <div class="col">
-                            <div class="card-body py-1">
-                                <h6 class="card-title mb-0 book-title" th:utext="${post.bookTitle}"></h6>
-                                <p class="card-text mb-0">
-                                    <span class="book-author" th:utext="${post.bookAuthor}"></span>
-                                </p>
-                            </div>
+                            <p class="m-0"><a class="font-weight-bold" th:utext="${post.bookTitle}" th:href="'/book/' + ${post.bookId}"></a></p>
+                            <span><small th:utext="${post.bookAuthor} + ' 지음'"></small></span>
                         </div>
                     </div>
-                    <div class="row no-gutters">
+                    <div class="row">
+                        <div class="col-9">
+                            <a class="text-info" th:href="'/posts/' + ${post.id}"><strong th:text="${post.subject}"></strong></a>
+                            <span class="badge badge-light" th:text="'조회수' + ${post.viewCount}"></span>
+                        </div>
                         <div class="col">
-                            <a th:href="'/posts/'+ ${post.id}" th:text="${post.subject}"></a>
-                            <p><small th:text="${post.author} + '님이 쓴 리뷰'"></small></p>
+                            <p class="m-0" style="font-size: 12px;" th:text="${post.author} + ' 님'"></p>
+                            <p class="m-0 text-muted" style="font-size: 12px;" th:text="${post.createdDate}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-secondary" th:text="${post.content}"></p>
                         </div>
                     </div>
                 </div>

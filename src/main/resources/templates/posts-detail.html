@@ -5,48 +5,49 @@
 </head>
 <body>
     <th:block th:include="fragments/nav-bar"></th:block>
-    <div class="container">
+    <div class="container py-5">
         <div class="row">
             <div class="col"></div>
-            <div class="col-lg-auto">
+            <div class="col-lg-auto w-75">
+
                 <!-- 책 정보 -->
-                <div class="card mt-5" style="width: 750px;">
-                    <div class="row no-gutters">
-                        <div class="col-auto">
-                            <img class="card-img img-thumbnail book-image" th:src="${book.image}" alt="...">
-                        </div>
-                        <div class="col">
-                            <div class="card-body py-1">
-                                <a class="card-title mb-0 book-title" th:utext="${book.title}" th:href="'/book/' + ${book.id}"></a>
-                                <p class="card-text mb-0">
-                                    <span class="book-author" th:text="${book.author}"></span> |
-                                    <span class="book-publisher" th:text="${book.publisher}"></span> |
-                                    <span class="book-pubdate" th:text="${book.pubdate}"></span>
-                                </p>
-                                <input type="hidden" id="bookId" name="bookId" th:value="${book.id}">
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <img class="book-image" th:src="${book.image}" alt="...">
+                    </div>
+                    <div class="col">
+                        <a class="book-title text-info" th:href="'/book/' + ${book.id}">
+                            <h5 class="font-weight-bold" th:utext="${book.title}"></h5>
+                        </a>
+                        <span class="book-author" th:text="${book.author} + ' 지음'"></span> |
+                        <span th:text="${book.publisher}"></span>
+                        <input type="hidden" id="bookId" name="bookId" th:value="${book.id}">
                     </div>
                 </div>
+                <hr>
 
                 <!-- 리뷰 -->
-                <div class="posts-container my-5">
-                    <div class="row">
-                        <div class="col-lg-auto">
-                            <div class="post">
-                                <h1 th:text="${post.subject}"></h1>
-                                <span class="post-author" th:text="'작성자 : ' + ${author}"></span>
-                                <span class="post-date" th:text="${post.createdDate}"></span>
-                                <span class="post-viewCount" th:text="'조회수 : ' + ${post.viewCount}"></span>
-                                <p th:utext="${post.content}"></p>
-                                <input type="hidden" id="postId" name="postId" th:value="${post.id}">
+                <div class="row">
+                    <div class="col">
+                        <div class="post">
+                            <div class="d-flex justify-content-start align-items-center">
+                                <h3 class="font-weight-bold" th:text="${post.subject}"></h3>
+                                <span class="badge badge-light" th:text="'조회수' + ${post.viewCount}"></span>
                             </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="post-author text-muted" th:text="'작성자 : ' + ${author}"></span>
+                                <span class="post-date text-muted" th:text="${post.createdDate}"></span>
+                            </div>
+                            <p class="py-3 m-0" th:utext="${post.content}"></p>
+                            <input type="hidden" id="postId" name="postId" th:value="${post.id}">
                         </div>
                     </div>
                 </div>
-                <a type="button" href="/posts" class="btn btn-primary">리뷰 목록</a>
-                <a th:if="${userNickname == post.author}" type="button" class="btn btn-success" th:href="'/posts/update/' + ${post.id}">수정</a>
-                <button th:if="${userNickname == post.author}" type="button" id="btn-delete" class="btn btn-danger">삭제</button>
+                <hr>
+
+                <a type="button" href="/posts" class="btn btn-info">리뷰 목록</a>
+                <a th:if="${userNickname == post.author}" type="button" class="btn btn-secondary" th:href="'/posts/update/' + ${post.id}">수정</a>
+                <button th:if="${userNickname == post.author}" type="button" id="btn-delete" class="btn btn-dark">삭제</button>
             </div>
             <div class="col"></div>
         </div>

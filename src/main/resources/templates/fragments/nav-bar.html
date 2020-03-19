@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <!-- navigation bar -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #86A614">
+<nav class="navbar navbar-expand-lg navbar-dark px-5" style="background-color: #182459">
     <a class="navbar-brand" href="/"><strong>팔월의 독서</strong></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,9 +25,9 @@
         </form>
         <ul class="navbar-nav">
             <li class="nav-item mr-2">
-                <button th:if="${userNickname == null}" type="button" class="btn" data-toggle="modal" data-target="#loginModal" style="background-color: #C7D93D">로그인</button>
+                <button th:if="${userNickname == null}" type="button" class="btn btn-info" data-toggle="modal" data-target="#loginModal">로그인</button>
                 <div th:if="${userNickname != null}" class="btn-group">
-                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                    <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" th:text="${userNickname} + '님 환영합니다'"></button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="/user">내 정보 수정</a>

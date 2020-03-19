@@ -3,7 +3,7 @@ package com.padoling.portfolio.august.web.dto.posts;
 import com.padoling.portfolio.august.domain.posts.Posts;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 public class PostsRecentResponseDto {
@@ -11,10 +11,11 @@ public class PostsRecentResponseDto {
     private Long id;
     private String subject;
     private String content;
-    private LocalDateTime createdDate;
+    private String createdDate;
     private String author;
     private Long bookId;
     private String bookTitle;
+    private String bookAuthor;
     private String bookImage;
 
     public PostsRecentResponseDto(Posts entity) {
@@ -22,10 +23,11 @@ public class PostsRecentResponseDto {
         this.subject = entity.getSubject();
         this.content = entity.getContent();
         this.content = adjustContent(entity.getContent());
-        this.createdDate = entity.getCreatedDate();
+        this.createdDate = entity.getCreatedDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         this.author = entity.getUser().getNickname();
         this.bookId = entity.getBook().getId();
         this.bookTitle = entity.getBook().getTitle();
+        this.bookAuthor = entity.getBook().getAuthor();
         this.bookImage = entity.getBook().getImage();
     }
 

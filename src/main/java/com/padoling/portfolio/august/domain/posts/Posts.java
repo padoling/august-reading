@@ -22,7 +22,7 @@ public class Posts extends BaseTimeEntity {
     @Column(name = "POSTS_ID")
     private Long id;
 
-    @Column(length = 500, nullable = false)
+    @Column(length = 101, nullable = false)
     private String subject;
 
     @Column(columnDefinition = "TEXT", nullable = false)

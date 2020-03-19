@@ -7,6 +7,9 @@ var main = {
         $(window).bind('beforeunload', function() {
             return '변경사항이 저장되지 않을 수 있습니다.';
         });
+        $('#subject').keydown(function() {
+            _this.checkLength($(this));
+        });
         $('#btn-cancle').on('click', function() {
             _this.cancle();
         });
@@ -56,6 +59,11 @@ var main = {
         }).fail(function(error) {
             alert(JSON.stringify(error));
         });
+    },
+    checkLength : function($input) {
+        if($input.val().length > $input.attr('maxlength')) {
+            alert('제목은 100자를 초과할 수 없습니다.');
+        }
     },
     verify : function() {
         var blank_pattern = /^\s+|\s+$/g;

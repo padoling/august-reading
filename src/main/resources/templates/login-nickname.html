@@ -4,27 +4,39 @@
     <th:block th:include="fragments/header"></th:block>
 </head>
 <body>
-    <div class="container">
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark px-5" style="background-color: #182459">
+        <a class="navbar-brand" href="/logout"><strong>팔월의 독서</strong></a>
+    </nav>
+
+    <div class="container py-5">
         <div class="row">
             <div class="col"></div>
-            <div class="col-lg-auto3 py-3">
-                <h3>닉네임 설정</h3>
-                <p>팔월의 독서에서 사용하실 멋진 닉네임을 입력해주세요.</p>
-                <form>
-                    <div class="form-row align-items-center">
-                        <div class="col-auto">
-                            <input type="text" class="form-control mb-2" id="nickname" name="nickname" maxlength="6" placeholder="닉네임 입력" required>
-                            <input type="hidden" id="userId" name="userId" th:value="${userId}">
-                        </div>
-                        <div class="col-auto">
-                            <button type="button" class="btn btn-secondary mb-2" id="check-nick">중복 확인</button>
-                        </div>
+            <div class="col-lg-auto3 w-75 text-center">
+                <h3><strong>닉네임 설정</strong></h3>
+                <p class="m-0">팔월의 독서에서 사용하실 멋진 닉네임을 입력해주세요!</p>
+                <p class="m-0 text-muted">닉네임을 설정한 후 팔월의 독서의 모든 서비스를 이용하실 수 있습니다.</p>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-lg-auto">
+                        <form class="py-3">
+                            <div class="form-row align-items-center">
+                                <div class="col-auto">
+                                    <input type="text" class="form-control mb-2" id="nickname" name="nickname" maxlength="6" placeholder="닉네임 입력" is-checked="false" required>
+                                    <input type="hidden" id="userId" name="userId" th:value="${userId}">
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-secondary mb-2" id="check-nick">중복 확인</button>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-auto" id="checked-msg"></div>
+                            </div>
+                            <button type="button" class="btn btn-info btn-block" id="btn-submit">닉네임 설정 완료!</button>
+                        </form>
                     </div>
-                    <div class="form-row">
-                        <div class="col-auto" id="checked-msg"></div>
-                    </div>
-                    <button type="button" class="btn btn-primary" id="btn-submit">설정 완료!</button>
-                </form>
+                    <div class="col"></div>
+                </div>
             </div>
             <div class="col"></div>
         </div>
