@@ -60,7 +60,7 @@ public class BookApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void testSaveBook() throws Exception {
         //given
         String title = "test title";
@@ -94,7 +94,7 @@ public class BookApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void testFindBook() throws Exception {
         //given
         String title = "test title";

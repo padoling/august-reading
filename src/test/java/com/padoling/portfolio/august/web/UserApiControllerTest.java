@@ -56,7 +56,7 @@ public class UserApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void testCheckNickname() throws Exception {
         //given
         String nickname = "test nickname";

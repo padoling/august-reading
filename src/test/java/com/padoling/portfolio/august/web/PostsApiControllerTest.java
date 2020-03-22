@@ -83,7 +83,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void testSavePosts() throws Exception {
         //given
         Long bookId = bookRepository.findAll().get(0).getId();
@@ -120,7 +120,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void testUpdatePosts() throws Exception {
         //given
         Book book = bookRepository.findAll().get(0);
@@ -162,7 +162,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void testDeletePosts() throws Exception {
         //given
         Book book = bookRepository.findAll().get(0);
