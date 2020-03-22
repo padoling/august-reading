@@ -1,5 +1,6 @@
 package com.padoling.portfolio.august.config.auth;
 
+import com.padoling.portfolio.august.domain.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .authorizeRequests()
                     .antMatchers("/", "/login", "/css/**", "/img/**", "/js/**", "/h2-console/**").permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest().hasRole(Role.ADMIN.name())
                 .and()
                     .oauth2Login()
                     .loginPage("/login")
