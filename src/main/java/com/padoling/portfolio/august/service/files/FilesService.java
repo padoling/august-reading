@@ -25,6 +25,8 @@ public class FilesService {
 
     private Path rootPath = Paths.get("/home/ec2-user/app/step1/temp");
 
+    private Path testPath = Paths.get("C:/summernote_files");
+
     @Transactional
     public Long save(MultipartFile file) throws Exception {
         try {
