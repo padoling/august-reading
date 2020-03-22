@@ -23,7 +23,7 @@ public class FilesService {
 
     private final FilesRepository filesRepository;
 
-    private Path rootPath = Paths.get("C:/summernote_files");
+    private Path rootPath = Paths.get("/home/ec2-user/app/step1/temp");
 
     @Transactional
     public Long save(MultipartFile file) throws Exception {
