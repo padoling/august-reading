@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .authorizeRequests()
                     .antMatchers("/", "/login", "/css/**", "/img/**", "/js/**", "/h2-console/**").permitAll()
+                    .antMatchers("/login/nickname").authenticated()
                     .anyRequest().hasRole(Role.ADMIN.name())
                 .and()
                     .oauth2Login()
