@@ -24,7 +24,7 @@ var main = {
 
             $.ajax({
                 type : 'GET',
-                url : '/api/v1/user-nick?nickname=' + nickname,
+                url : '/api/v1/user/nick?nickname=' + nickname,
                 dataType : 'json'
             }).done(function(result) {
                 if(result == true) {

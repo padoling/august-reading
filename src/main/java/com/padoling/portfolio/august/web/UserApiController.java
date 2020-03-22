@@ -15,7 +15,7 @@ public class UserApiController {
     private final UserService userService;
     private final HttpSession httpSession;
 
-    @GetMapping("/api/v1/user-nick")
+    @GetMapping("/api/v1/user/nick")
     public boolean checkNickname(@RequestParam String nickname) {
         return userService.isNicknameExist(nickname);
     }
