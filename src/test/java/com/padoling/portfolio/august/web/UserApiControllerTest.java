@@ -68,7 +68,7 @@ public class UserApiControllerTest {
                 .role(Role.USER)
                 .build());
 
-        String url = "http://localhost:" + port + "/api/v1/user-nick?nickname=" + nickname;
+        String url = "http://localhost:" + port + "/api/v1/user/nick?nickname=" + nickname;
 
         //when
         MvcResult result = mvc.perform(get(url))
