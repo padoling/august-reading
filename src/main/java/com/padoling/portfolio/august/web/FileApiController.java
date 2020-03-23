@@ -16,7 +16,7 @@ public class FileApiController {
     @PostMapping("/api/v1/image")
     public ResponseEntity<?> imageUpload(@RequestParam MultipartFile file) {
         try {
-            return ResponseEntity.ok().body("/api/v1/image/" + filesService.save(file));
+            return ResponseEntity.ok().body(filesService.save(file));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
@@ -24,13 +24,8 @@ public class FileApiController {
     }
 
     @GetMapping("/api/v1/image/{id}")
-    public ResponseEntity<?> getImage(@PathVariable Long id) {
+    public String getImage(@PathVariable Long id) {
         FileResponseDto file = filesService.findById(id);
-        try {
-            return ResponseEntity.ok().body(filesService.loadResource(file.getSavedName()));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().build();
-        }
+        return "<img src=\""+file.getFilePath()+"\" width=480 height=\"auto\"/>";
     }
 }

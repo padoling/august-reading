@@ -161,4 +161,16 @@ public class IndexController {
         }
         return "user-info";
     }
+
+    @GetMapping("/notice")
+    public String notice(Model model, @LoginUser SessionUser user) {
+        if(user != null) {
+            if(user.getNickname() == null) {
+                return "redirect:/login/nickname";
+            }
+            model.addAttribute("userNickname", user.getNickname());
+            model.addAttribute("user", user);
+        }
+        return "notice";
+    }
 }

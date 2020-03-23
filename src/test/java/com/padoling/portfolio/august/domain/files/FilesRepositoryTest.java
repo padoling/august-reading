@@ -26,12 +26,12 @@ public class FilesRepositoryTest {
     @Test
     public void testLoadingFiles() {
         //given
-        String originalName = "test originalName";
+        String fileName = "test fileName";
         String savedName = "test savedName";
         String filePath = "test filePath";
 
         filesRepository.save(Files.builder()
-                .originalName(originalName)
+                .fileName(fileName)
                 .savedName(savedName)
                 .filePath(filePath)
                 .build()
@@ -42,7 +42,7 @@ public class FilesRepositoryTest {
 
         //then
         Files file = files.get(0);
-        assertThat(file.getOriginalName()).isEqualTo(originalName);
+        assertThat(file.getFileName()).isEqualTo(fileName);
         assertThat(file.getSavedName()).isEqualTo(savedName);
         assertThat(file.getFilePath()).isEqualTo(filePath);
     }

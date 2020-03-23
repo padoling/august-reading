@@ -5,3 +5,4 @@ generated
 build
 application-naverapi.properties
 application-oauth.properties
+application-aws.properties

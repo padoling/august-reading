@@ -12,19 +12,15 @@ import lombok.NoArgsConstructor;
 @Builder
 public class FileSaveRequestDto {
 
-    private String originalName;
+    private String fileName;
     private String savedName;
     private String filePath;
-    private String contentType;
-    private Long size;
 
     public Files toEntity() {
         return Files.builder()
-                .originalName(originalName)
+                .fileName(fileName)
                 .savedName(savedName)
                 .filePath(filePath)
-                .contentType(contentType)
-                .size(size)
                 .build();
     }
 }

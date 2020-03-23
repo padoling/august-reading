@@ -17,22 +17,16 @@ public class Files extends BaseTimeEntity {
     @Column(name = "FILE_ID")
     private Long id;
 
-    private String originalName;
+    private String fileName;
 
     private String savedName;
 
     private String filePath;
 
-    private String contentType;
-
-    private Long size;
-
     @Builder
-    public Files(String originalName, String savedName, String filePath, String contentType, Long size) {
-        this.originalName = originalName;
+    public Files(String fileName, String savedName, String filePath) {
+        this.fileName = fileName;
         this.savedName = savedName;
         this.filePath = filePath;
-        this.contentType = contentType;
-        this.size = size;
     }
 }

@@ -40,6 +40,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
     compile('org.springframework.session:spring-session-jdbc')
     compile('org.mariadb.jdbc:mariadb-java-client')
+    compile('org.springframework.cloud:spring-cloud-aws-context:2.2.1.RELEASE')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
 }

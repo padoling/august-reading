@@ -7,18 +7,14 @@ import lombok.Getter;
 public class FileResponseDto {
 
     private Long id;
-    private String originalName;
+    private String fileName;
     private String savedName;
     private String filePath;
-    private String contentType;
-    private Long size;
 
     public FileResponseDto(Files entity) {
         this.id = entity.getId();
-        this.originalName = entity.getOriginalName();
+        this.fileName = entity.getFileName();
         this.savedName = entity.getSavedName();
         this.filePath = entity.getFilePath();
-        this.contentType = entity.getContentType();
-        this.size = entity.getSize();
     }
 }
