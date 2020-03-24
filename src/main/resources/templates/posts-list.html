@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col"></div>
-            <div class="col-lg-auto" style="min-width: 75%">
+            <div class="col-lg-auto" style="min-width: 75%; max-width: 750px;">
                 <h3 class="my-5 text-center"><strong>리뷰 목록</strong></h3>
                 <div th:if="${postPage.empty}" class="text-center">등록된 리뷰가 없습니다.</div>
                 <div th:each="post:${postPage.content}">
