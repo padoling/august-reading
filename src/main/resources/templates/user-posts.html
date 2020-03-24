@@ -19,7 +19,7 @@
                             <img th:src="${post.bookImage}" alt="..." style="width:40px; height:60px;">
                         </div>
                         <div class="col">
-                            <p class="m-0"><a class="font-weight-bold" th:utext="${post.bookTitle}" th:href="'/book/' + ${post.bookId}"></a></p>
+                            <p class="m-0"><a class="font-weight-bold text-secondary" th:utext="${post.bookTitle}" th:href="'/book/' + ${post.bookId}"></a></p>
                             <span><small th:utext="${post.bookAuthor} + ' 지음'"></small></span>
                         </div>
                     </div>

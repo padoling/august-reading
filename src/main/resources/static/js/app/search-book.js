@@ -19,7 +19,7 @@ var main = {
 
         $.ajax({
             type : 'GET',
-            url : '/api/v1/book/info?isbn=' + isbn + '&pubdate=' + pubdate,
+            url : '/api/v1/book/info?isbn=' + encodeURI(isbn) + '&pubdate=' + encodeURI(pubdate),
             dataType : 'text'
         }).done(function(bookId) {
             if(bookId != '') {

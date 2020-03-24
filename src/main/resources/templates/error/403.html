@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>error!</title>
+    <th:block th:include="fragments/header"></th:block>
+</head>
+<body style="background-color: black;">
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark px-5" style="background-color: #182459">
+        <a class="navbar-brand" href="/"><strong>팔월의 독서</strong></a>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-lg-auto text-center">
+                <img class="img-fluid" src="/img/app/403_error.jpg" alt="403 error" style="max-width: 500px;">
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    <th:block th:include="fragments/footer"></th:block>
+</body>
+</html>

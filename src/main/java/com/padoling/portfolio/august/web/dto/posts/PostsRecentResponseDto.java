@@ -32,7 +32,7 @@ public class PostsRecentResponseDto {
     }
 
     private String adjustContent(String entityContent) {
-        String replacedContent = entityContent.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", " ");
+        String replacedContent = entityContent.replaceAll("<(/)?([a-zA-Z0-9]*)(\\s[a-zA-Z0-9]*=[^>]*)?(\\s)*(/)?>", " ");
         if(replacedContent.length() >= 80) {
             replacedContent = replacedContent.substring(0, 80) + " ...";
         }
