@@ -11,11 +11,28 @@ cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
+
 script: "./gradlew clean build"
 
 # gradlew 실행 권한 부여
 before_install:
   - chmod +x gradlew
+
+before_deploy:
+  - zip -r august-reading *
+  - mkdir -p deploy
+  - mv august-reading.zip deploy/august-reading.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: august-reading-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
 
 # CI 실행 완료 시 메일로 알람
 notifications:
