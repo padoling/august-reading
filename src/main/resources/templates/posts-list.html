@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col"></div>
-            <div class="col-lg-auto w-75">
+            <div class="col-lg-auto" style="min-width: 75%">
                 <h3 class="my-5 text-center"><strong>리뷰 목록</strong></h3>
                 <div th:if="${postPage.empty}" class="text-center">등록된 리뷰가 없습니다.</div>
                 <div th:each="post:${postPage.content}">
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-8">
                             <a class="text-info" th:href="'/posts/' + ${post.id}"><strong th:text="${post.subject}"></strong></a>
                             <span class="badge badge-light" th:text="'조회수' + ${post.viewCount}"></span>
                         </div>

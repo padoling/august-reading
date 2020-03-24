@@ -7,20 +7,18 @@
 <body>
     <th:block th:include="fragments/nav-bar"></th:block>
     <!-- 검색창 -->
-    <div class="container my-5 text-center">
+    <div class="container my-5 text-center" style="max-width:750px;">
         <form action="/search/book" method="GET">
             <div class="form-row align-items-center">
-                <div class="col"></div>
-                <div class="col-7">
+                <div class="col-9">
                     <input type="search" class="form-control mb-2" name="query" id="query"
                            th:value="${books==null ? null : books.query}" placeholder="책 제목, 저자, 출판사 등" required>
                     <input type="hidden" name="start" value="1">
                     <input type="hidden" name="display" value="10">
                 </div>
-                <div class="col-2">
+                <div class="col-3">
                     <button type="submit" id="btn-search" class="btn btn-info btn-block mb-2">검색</button>
                 </div>
-                <div class="col"></div>
             </div>
         </form>
     </div>
@@ -29,9 +27,9 @@
     <div class="container">
         <div class="row">
             <div class="col"></div>
-            <div class="col-lg-auto" style="width: 75%;">
+            <div class="col-lg-auto">
                 <div th:if="${books == null}" class="text-center">
-                    <h4><strong>원하는 책을 검색한 뒤 리뷰를 작성해보세요~!</strong></h4>
+                    <h5><strong>원하는 책을 검색한 뒤 리뷰를 작성해보세요~!</strong></h5>
                 </div>
                 <th:block th:if="${books != null}">
                     <h5 class="text-center"><strong>검색 결과</strong></h5>
