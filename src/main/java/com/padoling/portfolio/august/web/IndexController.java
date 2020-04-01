@@ -6,6 +6,7 @@ import com.padoling.portfolio.august.search.dto.NaverSearchRequestDto;
 import com.padoling.portfolio.august.search.NaverSearchService;
 import com.padoling.portfolio.august.service.book.BookService;
 import com.padoling.portfolio.august.service.posts.PostsService;
+import com.padoling.portfolio.august.service.user.UserService;
 import com.padoling.portfolio.august.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,7 @@ public class IndexController {
     private final NaverSearchService naverSearchService;
     private final BookService bookService;
     private final PostsService postsService;
+    private final UserService userService;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
@@ -90,7 +92,7 @@ public class IndexController {
         model.addAttribute("book", bookService.findById(post.getBookId()));
         model.addAttribute("author", post.getAuthor());
         model.addAttribute("post", post);
-        if(user != null && !user.getNickname().equals(post.getAuthor())) {
+        if(user == null || !user.getNickname().equals(post.getAuthor())) {
             postsService.updateViewCount(id);
         }
         return "posts-detail";
@@ -157,7 +159,7 @@ public class IndexController {
                 return "redirect:/login/nickname";
             }
             model.addAttribute("userNickname", user.getNickname());
-            model.addAttribute("user", user);
+            model.addAttribute("user", userService.findById(user.getId()));
         }
         return "user-info";
     }
@@ -169,7 +171,6 @@ public class IndexController {
                 return "redirect:/login/nickname";
             }
             model.addAttribute("userNickname", user.getNickname());
-            model.addAttribute("user", user);
         }
         return "notice";
     }
