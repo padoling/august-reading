@@ -4,8 +4,6 @@
 
 ![main_img](/image/main_img.png)
 
-다음 링크로 팔월의 독서에 접속하실 수 있습니다 : [팔월의 독서](http://ec2-3-34-12-151.ap-northeast-2.compute.amazonaws.com)
-
 <hr/>
 
 ### 기능 소개
@@ -31,6 +29,3 @@
 보안이 필요한 정보를 제외한 모든 코드는 github에 공개되어 있습니다.
 
 <hr/>
-
-### Issue 등록
-사이트 이용 중 버그 발견 시 본 repository의 issue로 등록해주시거나(bug 태그) s_hi32@naver.com 으로 메일을 보내주시면 정말 감사드리겠습니다! ^__^
